@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Producto, MovimientoStock, MovimientoFinanciero
+from .models import Producto, MovimientoStock, MovimientoFinanciero, ProductoVentaHistorial
 
 
 @admin.register(Producto)
@@ -20,3 +20,9 @@ class MovimientoFinancieroAdmin(admin.ModelAdmin):
     list_display = ('fecha', 'tipo', 'categoria', 'cliente_proveedor', 'monto', 'medio_pago')
     list_filter = ('tipo', 'medio_pago')
     search_fields = ('categoria', 'cliente_proveedor', 'factura')
+
+
+@admin.register(ProductoVentaHistorial)
+class ProductoVentaHistorialAdmin(admin.ModelAdmin):
+    list_display = ('sku', 'nombre', 'precio', 'actualizado')
+    search_fields = ('sku', 'nombre')
