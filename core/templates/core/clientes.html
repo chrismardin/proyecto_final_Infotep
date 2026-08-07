@@ -1,0 +1,160 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Cromf Finanzas - Clientes</title>
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+
+<!-- ============================================================
+     MENU LATERAL (SIDEBAR)
+     Este bloque es IGUAL en las 10 páginas del sistema.
+     Los estilos de esto están en styles.css, SECCION 1.
+     ============================================================ -->
+<aside>
+  <div class="logo">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M3 17l6-6 4 4 8-8" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M15 7h6v6" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    Cromf Finanzas
+  </div>
+  <nav>
+  <a href="{% url 'dashboard' %}">🏠 Dashboard</a>
+  <a href="{% url 'productos' %}">📦 Productos</a>
+  <a href="{% url 'ventas' %}">🛒 Ventas</a>
+  <a href="{% url 'finanzas' %}">💲 Finanzas</a>
+  <a href="{% url 'inventario' %}">📥 Inventario</a>
+  <a href="{% url 'proyecciones' %}">📈 Proyecciones</a>
+  <a href="{% url 'clientes' %}">👤 Clientes</a>
+  <a href="{% url 'empleados' %}">🧑‍💼 Empleados</a>
+  <a href="{% url 'reportes' %}">📊 Reportes</a>
+  <a href="{% url 'configuracion' %}" class="config-link">⚙️ Configuracion</a>
+</nav>
+</aside>
+
+<main>
+  <!-- ============================================================
+       BARRA SUPERIOR (TOPBAR)
+       Título de la página + zona de usuario/notificaciones.
+       Estilos en styles.css, SECCION 2.
+       ============================================================ -->
+    <header class="topbar">
+    <h1>👤 Clientes</h1>
+    <div class="admin-area">🔔 👤 Admin</div>
+  </header>
+
+    <!-- ============================================================
+       PESTAÑAS (visual únicamente)
+       OJO: estos botones todavía NO tienen JavaScript conectado
+       en esta página (a diferencia de inventario.html, que sí
+       cambia de contenido al hacer clic). Por ahora solo se ve
+       cuál está "activa" con la clase .active.
+       Estilos en styles.css, SECCION 3.
+       ============================================================ -->
+  <div class="tabs">
+    <button class="active">Directorio General</button>
+  </div>
+
+    <!-- ============================================================
+       PANEL PRINCIPAL (tabla / contenido de esta página)
+       Estilos en styles.css, SECCION 6 (panel) y SECCION 7 (tabla).
+       ============================================================ -->
+  <div class="panel">
+    <div class="panel-toolbar">
+      <div class="panel-toolbar-left">
+        <span class="section-label">Productos</span>
+        <button class="btn-add">Registro</button>
+      </div>
+      <div class="search-box">
+        <input type="text" placeholder="Buscar...">🔍
+      </div>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Empresa</th>
+          <th>Telefono</th>
+          <th>Ultima Compra</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>A001</td>
+          <td>Jose Gutierrez</td>
+          <td>Acero Estrella</td>
+          <td>809-468-8255</td>
+          <td>30/06/2026</td>
+        </tr>
+        <tr>
+          <td>A002</td>
+          <td>Juan Mendez</td>
+          <td>Cecomsa</td>
+          <td>809-400-8785</td>
+          <td>30/06/2026</td>
+        </tr>
+        <tr>
+          <td>A001</td>
+          <td>Jose Gutierrez</td>
+          <td>Acero Estrella</td>
+          <td>809-468-8255</td>
+          <td>30/06/2026</td>
+        </tr>
+        <tr>
+          <td>A002</td>
+          <td>Juan Mendez</td>
+          <td>Cecomsa</td>
+          <td>809-400-8785</td>
+          <td>30/06/2026</td>
+        </tr>
+        <tr>
+          <td>A001</td>
+          <td>Jose Gutierrez</td>
+          <td>Acero Estrella</td>
+          <td>809-468-8255</td>
+          <td>30/06/2026</td>
+        </tr>
+        <tr>
+          <td>A002</td>
+          <td>Juan Mendez</td>
+          <td>Cecomsa</td>
+          <td>809-400-8785</td>
+          <td>30/06/2026</td>
+        </tr>
+        <tr>
+          <td>A001</td>
+          <td>Jose Gutierrez</td>
+          <td>Acero Estrella</td>
+          <td>809-468-8255</td>
+          <td>30/06/2026</td>
+        </tr>
+        <tr>
+          <td>A002</td>
+          <td>Juan Mendez</td>
+          <td>Cecomsa</td>
+          <td>809-400-8785</td>
+          <td>30/06/2026</td>
+        </tr>
+        <tr>
+          <td>A002</td>
+          <td>Juan Mendez</td>
+          <td>Cecomsa</td>
+          <td>809-400-8785</td>
+          <td>30/06/2026</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="ver-mas">
+      <a href="#">Ver Mas</a>
+    </div>
+  </div>
+</main>
+
+</body>
+</html>

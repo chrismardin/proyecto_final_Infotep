@@ -1,0 +1,196 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Cromf Finanzas - Proyecciones</title>
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+
+<!-- ============================================================
+     MENU LATERAL (SIDEBAR)
+     Este bloque es IGUAL en las 10 páginas del sistema.
+     Los estilos de esto están en styles.css, SECCION 1.
+     ============================================================ -->
+<aside>
+  <div class="logo">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M3 17l6-6 4 4 8-8" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M15 7h6v6" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    Cromf Finanzas
+  </div>
+  <nav>
+  <a href="{% url 'dashboard' %}">🏠 Dashboard</a>
+  <a href="{% url 'productos' %}">📦 Productos</a>
+  <a href="{% url 'ventas' %}">🛒 Ventas</a>
+  <a href="{% url 'finanzas' %}">💲 Finanzas</a>
+  <a href="{% url 'inventario' %}">📥 Inventario</a>
+  <a href="{% url 'proyecciones' %}">📈 Proyecciones</a>
+  <a href="{% url 'clientes' %}">👤 Clientes</a>
+  <a href="{% url 'empleados' %}">🧑‍💼 Empleados</a>
+  <a href="{% url 'reportes' %}">📊 Reportes</a>
+  <a href="{% url 'configuracion' %}" class="config-link">⚙️ Configuracion</a>
+</nav>
+</aside>
+
+<main>
+  <!-- ============================================================
+       BARRA SUPERIOR (TOPBAR)
+       Título de la página + zona de usuario/notificaciones.
+       Estilos en styles.css, SECCION 2.
+       ============================================================ -->
+    <header class="topbar">
+    <div>
+      <h1>📊 Proyecciones</h1>
+      <p class="subtitle">Resumen General De Las Proyecciones Del Negocio</p>
+    </div>
+    <div class="admin-area">
+      🔔 👤 Admin
+    </div>
+  </header>
+
+    <!-- ============================================================
+       TARJETAS KPI (los recuadros con números grandes arriba)
+       Cada <div class="kpi-card"> es una tarjeta.
+       Estilos en styles.css, SECCION 4.
+       ============================================================ -->
+  <section class="kpi-row">
+    <div class="kpi-card green">
+      <div class="kpi-top">
+        <span class="kpi-icon green">💵</span>
+        <span class="label">Ingresos Del Mes</span>
+      </div>
+      <div class="value">$125,0000</div>
+      <div class="sub">▲ 12.5% Vs Mes Anterior</div>
+    </div>
+    <div class="kpi-card red">
+      <div class="kpi-top">
+        <span class="kpi-icon red">💳</span>
+        <span class="label">Gastos Operativos</span>
+      </div>
+      <div class="value">$78,230.50</div>
+      <div class="sub">▲ 12.5% Vs Mes Anterior</div>
+    </div>
+    <div class="kpi-card blue">
+      <div class="kpi-top">
+        <span class="kpi-icon blue">👥</span>
+        <span class="label">Clientes Activos</span>
+      </div>
+      <div class="value">2500</div>
+      <div class="sub">▲ 12.5% Vs Mes Anterior</div>
+    </div>
+    <div class="kpi-card orange">
+      <div class="kpi-top">
+        <span class="kpi-icon orange">🧑‍💼</span>
+        <span class="label">Empleados</span>
+      </div>
+      <div class="value">50</div>
+      <div class="sub">▲ 12.5% Vs Mes Anterior</div>
+    </div>
+  </section>
+<div class="card">
+    <div class="card-header">
+      <h3>Proyeccion De Ventas De Productos</h3>
+      <span class="editar-link">ℹ️ Editar Articulos</span>
+    </div>
+    <div class="proy-chart-wrap">
+      <div class="proy-chart-yaxis">
+        <span>RD$ 8,000.00</span>
+        <span>RD$ 6,000.00</span>
+        <span>RD$ 3,000.00</span>
+        <span>RD$ 1,500.00</span>
+        <span>0.0</span>
+      </div>
+      <div class="proy-chart-bars">
+        <div class="proy-bar-col">
+          <span class="proy-bar-value">RD$ 3,500.00</span>
+          <div class="proy-bar art1" style="height:88px;"></div>
+          <span class="proy-bar-label">Art 1</span>
+        </div>
+        <div class="proy-bar-col">
+          <span class="proy-bar-value">RD$ 4,500.00</span>
+          <div class="proy-bar art2" style="height:112px;"></div>
+          <span class="proy-bar-label">Art 2</span>
+        </div>
+        <div class="proy-bar-col">
+          <span class="proy-bar-value">RD$ 6,100.00</span>
+          <div class="proy-bar art3" style="height:152px;"></div>
+          <span class="proy-bar-label">Art 3</span>
+        </div>
+        <div class="proy-bar-col">
+          <span class="proy-bar-value">RD$ 3,140.00</span>
+          <div class="proy-bar art4" style="height:80px;"></div>
+          <span class="proy-bar-label">Art 4</span>
+        </div>
+        <div class="proy-bar-col">
+          <span class="proy-bar-value">RD$ 3,600.00</span>
+          <div class="proy-bar art5" style="height:92px;"></div>
+          <span class="proy-bar-label">Art 5</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <h3 style="margin-bottom:14px;">Fluctuaciones Esperadas En Productos</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Producto</th>
+          <th>Impacto</th>
+          <th>Porcentaje Esperado</th>
+          <th>Probabilidad</th>
+          <th>Fecha Estimacion</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Lapicero</td>
+          <td><span class="badge positivo">Positivo</span></td>
+          <td>6%</td>
+          <td><div class="prob-cell">78%<div class="prob-bar green"><span style="width:78%;"></span></div></div></td>
+          <td>28/06/26 - 2/08/26</td>
+        </tr>
+        <tr>
+          <td>Sacapunta</td>
+          <td><span class="badge negativo">Negativo</span></td>
+          <td>12%</td>
+          <td><div class="prob-cell">84%<div class="prob-bar red"><span style="width:84%;"></span></div></div></td>
+          <td>28/06/26 - 2/08/26</td>
+        </tr>
+        <tr>
+          <td>Sacapunta</td>
+          <td><span class="badge positivo">Positivo</span></td>
+          <td>3%</td>
+          <td><div class="prob-cell">34%<div class="prob-bar green"><span style="width:34%;"></span></div></div></td>
+          <td>28/06/26 - 2/08/26</td>
+        </tr>
+        <tr>
+          <td>Lapicero</td>
+          <td><span class="badge positivo">Positivo</span></td>
+          <td>6%</td>
+          <td><div class="prob-cell">78%<div class="prob-bar green"><span style="width:78%;"></span></div></div></td>
+          <td>28/06/26 - 2/08/26</td>
+        </tr>
+        <tr>
+          <td>Sacapunta</td>
+          <td><span class="badge negativo">Negativo</span></td>
+          <td>12%</td>
+          <td><div class="prob-cell">84%<div class="prob-bar red"><span style="width:84%;"></span></div></div></td>
+          <td>28/06/26 - 2/08/26</td>
+        </tr>
+        <tr>
+          <td>Sacapunta</td>
+          <td><span class="badge positivo">Positivo</span></td>
+          <td>3%</td>
+          <td><div class="prob-cell">34%<div class="prob-bar green"><span style="width:34%;"></span></div></div></td>
+          <td>28/06/26 - 2/08/26</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</main>
+
+</body>
+</html>

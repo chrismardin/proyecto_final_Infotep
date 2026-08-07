@@ -1,0 +1,1350 @@
+/* ============================================================
+   ARCHIVO: styles.css
+   Este archivo tiene TODOS los estilos del sistema, ordenados
+   por secciones. Cada bloque grande empieza con un comentario
+   como este que dice:
+     - QUE es (para qué sirve)
+     - EN QUE HTML se usa (en qué archivo(s) aparecen esas clases)
+
+   Si vas a agregar algo nuevo:
+   1. Busca la sección parecida a lo que quieres hacer.
+   2. Copia una regla similar y cambia el nombre de la clase.
+   3. Usa esa clase nueva en el HTML donde la necesites.
+   ============================================================ */
+
+
+/* ------------------------------------------------------------
+   RESET BASICO
+   Quita los márgenes/paddings que el navegador pone por
+   defecto, para que todo se vea igual en cualquier navegador.
+   Se aplica a TODAS las páginas.
+   ------------------------------------------------------------ */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #e9ebf0;
+  min-height: 100vh;
+}
+
+
+/* ============================================================
+   SECCION 1: MENU LATERAL (SIDEBAR)
+   HTML donde se usa: la etiqueta <aside> ... </aside> que está
+   al inicio del <body> en TODAS las páginas (dashboard.html,
+   productos.html, ventas.html, etc.)
+   ============================================================ */
+
+/* Caja completa del menú lateral (fondo oscuro, fijo a la izquierda) */
+aside {
+  width: 210px;
+  background: #0f1524;
+  color: #cfd3dc;
+  padding: 24px 16px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* El logo "Cromf Finanzas" arriba del menú -> clase .logo dentro de <aside> */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #21c99a;
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+.logo svg {
+  width: 28px;
+  height: 28px;
+}
+
+/* Cada link del menú -> etiqueta <nav><a>...</a></nav> */
+nav a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #cfd3dc;
+  text-decoration: none;
+  font-size: 14px;
+  padding: 10px 8px;
+  border-radius: 6px;
+  margin-bottom: 4px;
+}
+
+/* Link resaltado (la página en la que estás parado) -> clase .active en el <a> */
+nav a.active {
+  background: #1c2438;
+  color: #fff;
+}
+
+/* Efecto al pasar el mouse por un link del menú */
+nav a:hover {
+  background: #1c2438;
+}
+
+/* Un poco de separación extra para el link de "Configuracion" */
+.config-link {
+  margin-top: 4px;
+}
+
+
+/* ============================================================
+   SECCION 2: CONTENIDO PRINCIPAL Y BARRA SUPERIOR (TOPBAR)
+   HTML donde se usa: la etiqueta <main> con el <header
+   class="topbar"> adentro, en TODAS las páginas.
+   ============================================================ */
+
+/* Caja blanca/gris donde va todo el contenido de la página (a la derecha del menú) */
+main {
+  background: #e9ebf0;
+  padding: 20px 28px;
+  margin-left: 210px;
+  /* deja espacio para que no lo tape el <aside> */
+  min-height: 100vh;
+}
+
+/* Barra de arriba con el título de la página y el ícono de usuario -> <header class="topbar"> */
+header.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+/* Variante de la topbar cuando el título tiene un subtítulo debajo */
+header.topbar.with-subtitle {
+  align-items: flex-start;
+}
+
+/* El <h1> con el título de la página, ej: "📦 Productos" */
+header.topbar h1 {
+  font-size: 20px;
+  color: #1c2438;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Texto pequeño debajo del título (subtítulo) -> <p class="subtitle"> */
+header.topbar p.subtitle {
+  font-size: 12px;
+  color: #777;
+  margin-left: 28px;
+}
+
+/* Zona de "👤 Admin 🔔" arriba a la derecha -> <div class="admin-area"> */
+.admin-area {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 14px;
+  color: #1c2438;
+}
+
+/* Circulito de avatar/usuario, si se usa como imagen en vez de emoji */
+.avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #d9dce3;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+.update-info {
+  font-size: 11px;
+  color: #888;
+}
+
+/* Subtítulos grandes de sección, ej: "KPI" en el dashboard -> <h2 class="section-title"> */
+.section-title {
+  font-size: 22px;
+  color: #1c2438;
+  margin: 6px 0 14px;
+}
+
+
+/* ============================================================
+   SECCION 3: PESTAÑAS / TABS
+   HTML donde se usa: los botones dentro de <div class="tabs">
+   que aparecen en inventario.html, productos.html, etc.
+   ============================================================ */
+
+.tabs {
+  display: flex;
+  gap: 10px;
+  margin: 18px 0 16px;
+}
+
+.tabs button {
+  background: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #333;
+  cursor: pointer;
+}
+
+/* El botón/pestaña que está seleccionada -> clase .active en el <button> */
+.tabs button.active {
+  background: #1c2438;
+  color: #fff;
+}
+
+/* Variante "pastilla" (bordeada) usada solo en finanzas.html -> <div class="tabs-pill"> */
+.tabs-pill {
+  display: flex;
+  gap: 0;
+  margin: 18px 0 16px;
+  background: #fff;
+  border-radius: 8px;
+  padding: 6px;
+  width: fit-content;
+}
+
+.tabs-pill button {
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 22px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #333;
+  cursor: pointer;
+}
+
+.tabs-pill button.active {
+  border: 1px solid #2f6df6;
+  color: #1c2438;
+}
+
+
+/* ============================================================
+   SECCION 4: TARJETAS KPI (los recuadros con numeros grandes)
+   HTML donde se usa: <section class="kpi-row"> con varios
+   <div class="kpi-card"> adentro. Aparece en dashboard.html,
+   inventario.html, ventas.html, etc.
+   ============================================================ */
+
+/* Fila que contiene todas las tarjetas KPI, una al lado de la otra */
+.kpi-row {
+  display: flex;
+  gap: 16px;
+  margin: 18px 0 20px;
+}
+
+/* Cada tarjeta individual (fondo blanco por defecto) */
+.kpi-card {
+  flex: 1;
+  background: #fff;
+  border-radius: 10px;
+  padding: 16px 20px;
+}
+
+/* Texto pequeño arriba del número, ej: "Ventas Del Mes" */
+.kpi-card .label {
+  font-size: 12px;
+  color: #555;
+  margin-bottom: 6px;
+  font-weight: 700;
+}
+
+/* El número grande principal de la tarjeta */
+.kpi-card .value {
+  font-size: 22px;
+  font-weight: bold;
+  color: #1c2438;
+}
+
+/* Texto pequeño debajo del número, ej: "▲ 11.5% Vs Mes Anterior" */
+.kpi-card .sub {
+  font-size: 11px;
+  margin-top: 6px;
+  color: #777;
+}
+
+/* Colores según si el dato sube, baja o es neutral -> agregar clase .up / .down / .neutral junto a .sub */
+.sub.up {
+  color: #1fa367;
+}
+
+.sub.down {
+  color: #d13b3b;
+}
+
+.sub.neutral {
+  color: #777;
+}
+
+/* Colores de fondo opcionales para una tarjeta -> agregar la clase junto a .kpi-card (ej: class="kpi-card blue") */
+.kpi-card.blue {
+  background: #e2ecfb;
+}
+
+.kpi-card.red {
+  background: #fbe1e1;
+}
+
+.kpi-card.green {
+  background: #dff5e8;
+}
+
+.kpi-card.orange {
+  background: #fdeadb;
+}
+
+.kpi-card.purple {
+  background: #ece1fb;
+}
+
+/* Fila del icono + etiqueta dentro de una tarjeta KPI (icono de color + texto) */
+.kpi-top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+/* Circulo de color detrás del emoji del icono */
+.kpi-icon {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  color: #fff;
+}
+
+/* Colores del circulo del icono -> agregar la clase junto a .kpi-icon (ej: class="kpi-icon blue") */
+.kpi-icon.blue {
+  background: #3f7fe0;
+}
+
+.kpi-icon.red {
+  background: #d13b3b;
+}
+
+.kpi-icon.green {
+  background: #21c99a;
+}
+
+.kpi-icon.orange {
+  background: #e8934c;
+}
+
+.kpi-icon.purple {
+  background: #7a2fa5;
+}
+
+
+/* ============================================================
+   SECCION 5: TARJETA GENERICA (.card)
+   HTML donde se usa: cualquier <div class="card"> que envuelve
+   un bloque de contenido con su propio título <h3>.
+   ============================================================ */
+
+.card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 18px 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.card h3 {
+  font-size: 15px;
+  color: #1c2438;
+  margin-bottom: 10px;
+}
+
+.card h3 u {
+  text-decoration: underline;
+}
+
+/* Cuando la tarjeta tiene un título a la izquierda y un link a la derecha */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.card-header h3 {
+  margin-bottom: 0;
+}
+
+.editar-link {
+  font-size: 12px;
+  color: #777;
+}
+
+/* Leyenda de colores de una gráfica, ej: "Cat 1 Cat 2 Cat 3 Cat 4" */
+.legend {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  font-size: 12px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.legend span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* El puntito de color antes de cada texto de la leyenda -> <i class="dot"> */
+.dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+
+/* ============================================================
+   SECCION 6: PANEL (contenedor de tablas y formularios)
+   HTML donde se usa: <div class="panel"> que envuelve tablas
+   con su propia barra de herramientas arriba.
+   ============================================================ */
+
+.panel {
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+/* Fila de arriba del panel: buscador a la izquierda, botón a la derecha */
+.panel-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  gap: 10px;
+}
+
+/* Caja de búsqueda con lupa -> <div class="search-box"> */
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #f0f1f4;
+  border-radius: 6px;
+  padding: 7px 12px;
+  font-size: 13px;
+  color: #888;
+  width: 200px;
+}
+
+.search-box input {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 13px;
+  width: 100%;
+}
+
+/* Botón azul principal, ej: "+ Registrar Movimiento" -> <button class="btn-add"> */
+.btn-add {
+  background: #2f6df6;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+/* Variante verde del botón -> class="btn-add green" */
+.btn-add.green {
+  background: #21c99a;
+}
+
+/* Circulo blanco con el "+" dentro del botón */
+.icon-circle {
+  background: #fff;
+  color: #2f6df6;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+}
+
+
+/* ============================================================
+   SECCION 7: TABLAS
+   HTML donde se usa: cualquier <table> normal (productos,
+   movimientos, historial, etc.)
+   ============================================================ */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+table th {
+  text-align: left;
+  color: #1c2438;
+  font-weight: 700;
+  padding: 10px 8px;
+  border-bottom: 1px solid #eee;
+}
+
+table td {
+  padding: 11px 8px;
+  color: #333;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+/* Colorea de gris clarito las filas pares, para que sea más fácil leer la tabla */
+table tbody tr:nth-child(even) {
+  background: #f7f8fa;
+}
+
+/* Para columnas de dinero (las pone en negrita) -> class="amount" en el <td> o <th> */
+table td.amount,
+table th.amount {
+  font-weight: bold;
+}
+
+/* Fila de "Total" al final de una tabla */
+.table-total {
+  display: flex;
+  justify-content: space-between;
+  padding: 14px 8px 4px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #1c2438;
+}
+
+/* Link de "Ver más" alineado a la derecha, debajo de una tabla */
+.ver-mas {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+.ver-mas a {
+  font-size: 12px;
+  color: #555;
+  background: #f0f1f4;
+  padding: 6px 16px;
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+
+/* ============================================================
+   SECCION 8: ETIQUETAS DE ESTADO (BADGES)
+   HTML donde se usa: <span class="estado ok"> / <span
+   class="badge ..."> dentro de las tablas, para mostrar
+   "Optimo", "Bajo Stock", "Entrada", "Salida", roles, etc.
+   ============================================================ */
+
+.estado,
+.badge,
+.badge-role {
+  display: inline-block;
+  padding: 3px 12px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+/* Verde: usar junto a .estado / .badge cuando algo está bien (ej: class="estado ok") */
+.estado.ok,
+.badge.positivo,
+.estado.activo {
+  background: #d6f2e1;
+  color: #1c8a5a;
+}
+
+/* Rojo: usar cuando algo está mal / bajo (ej: class="estado bajo") */
+.estado.bajo,
+.estado.inactivo {
+  background: #fbe1e1;
+  color: #c0392b;
+}
+
+/* Amarillo: usar para un estado intermedio (ej: class="estado medio") */
+.estado.medio {
+  background: #fdf0c9;
+  color: #b8860b;
+}
+
+.badge.negativo {
+  background: #eceded;
+  color: #777;
+}
+
+/* Etiqueta de rol de usuario (ej: "Admin", "Empleado") */
+.badge-role {
+  background: #e2ecfb;
+  color: #3f7fe0;
+}
+
+.badge-role.admin {
+  background: #ece1fb;
+  color: #7a2fa5;
+}
+
+/* Barra de probabilidad/porcentaje dentro de una celda de tabla */
+.prob-cell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.prob-bar {
+  flex: 1;
+  height: 5px;
+  border-radius: 4px;
+  background: #eee;
+  position: relative;
+  max-width: 100px;
+}
+
+.prob-bar span {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  border-radius: 4px;
+}
+
+.prob-bar.green span {
+  background: #21c99a;
+}
+
+.prob-bar.red span {
+  background: #d13b3b;
+}
+
+
+/* ============================================================
+   SECCION 9: ALERTAS DEL MODULO IA
+   HTML donde se usa: <div class="alerts"> con mensajes de
+   alerta/recomendación, en dashboard.html e inventario.html.
+   ============================================================ */
+
+.alerts {
+  background: #fdf6d8;
+  border-radius: 10px;
+  padding: 14px 18px;
+}
+
+.alerts h3 {
+  color: #1c2438;
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.alerts p {
+  font-size: 12px;
+  margin-bottom: 4px;
+  color: #333;
+}
+
+/* Mensaje de alerta en rojo (más urgente) -> class="alert-danger" en el <p> */
+.alerts p.alert-danger {
+  color: #c0392b;
+}
+
+
+/* ============================================================
+   SECCION 10: FORMULARIOS GENERICOS
+   HTML donde se usa: cualquier <form> del sistema, por ejemplo
+   el formulario de "Registrar Movimiento" en inventario.html.
+   ============================================================ */
+
+/* Envuelve una etiqueta (label) + su campo (input/select) */
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field-group label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #1c2438;
+}
+
+.field-group input,
+.field-group select {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 8px 11px;
+  font-size: 13px;
+  color: #333;
+  outline: none;
+}
+
+/* Botón principal para guardar/generar algo (azul, redondeado) */
+.btn-guardar,
+.btn-generar {
+  background: #2f6df6;
+  color: #fff;
+  border: none;
+  padding: 9px 22px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 6px;
+}
+
+/* Botón secundario (blanco con borde), ej: "Cancelar" o "Exportar" */
+.btn-secundario,
+.btn-export {
+  background: #fff;
+  color: #1c2438;
+  border: 1px solid #ddd;
+  padding: 9px 22px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 6px;
+  margin-left: 10px;
+}
+
+/* Botón rojo de peligro, ej: "Eliminar cuenta" */
+.btn-danger {
+  background: #d13b3b;
+  color: #fff;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+
+/* ============================================================
+   SECCION 11: GRAFICA DEL DASHBOARD (barras apiladas)
+   HTML donde se usa: dashboard.html, dentro de
+   <div class="dash-chart-wrap">. Todas las clases empiezan con
+   "dash-" para que no choquen con las gráficas de otras páginas.
+   ============================================================ */
+
+.dash-chart-wrap {
+  display: flex;
+}
+
+/* Columna de números a la izquierda de la gráfica (eje Y) */
+.dash-chart-yaxis {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 11px;
+  color: #777;
+  padding-right: 8px;
+  height: 160px;
+}
+
+/* Zona donde están las barras */
+.dash-chart-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 22px;
+  height: 160px;
+  flex: 1;
+  border-left: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  padding-left: 12px;
+}
+
+/* Cada barra apilada (una columna de la gráfica) */
+.dash-bar-stack {
+  width: 34px;
+  display: flex;
+  flex-direction: column-reverse;
+  border-radius: 3px 3px 0 0;
+  overflow: hidden;
+}
+
+/* Los "pedazos" de color dentro de cada barra (una por categoría) */
+.dash-seg-cat1 {
+  background: #d21f1f;
+}
+
+.dash-seg-cat2 {
+  background: #6e1414;
+}
+
+.dash-seg-cat3 {
+  background: #1f9e82;
+}
+
+.dash-seg-cat4 {
+  background: #7a2fa5;
+}
+
+
+/* ============================================================
+   SECCION 12: GRAFICA DE PROYECCIONES (barras verticales)
+   HTML donde se usa: proyecciones.html. Clases con prefijo "proy-".
+   ============================================================ */
+
+.proy-chart-wrap {
+  display: flex;
+}
+
+.proy-chart-yaxis {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 11px;
+  color: #777;
+  padding-right: 8px;
+  height: 190px;
+}
+
+.proy-chart-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 40px;
+  height: 190px;
+  flex: 1;
+  border-left: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  padding-left: 20px;
+}
+
+.proy-bar-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  width: 70px;
+}
+
+.proy-bar-value {
+  font-size: 11px;
+  font-weight: 700;
+  color: #333;
+}
+
+.proy-bar {
+  width: 55px;
+  border-radius: 4px 4px 0 0;
+}
+
+.proy-bar-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #1c2438;
+  margin-top: 6px;
+}
+
+/* Un color distinto por cada artículo/producto proyectado */
+.proy-bar.art1 {
+  background: #e0554f;
+}
+
+.proy-bar.art2 {
+  background: #6e2f22;
+}
+
+.proy-bar.art3 {
+  background: #1f9e82;
+}
+
+.proy-bar.art4 {
+  background: #7a2fa5;
+}
+
+.proy-bar.art5 {
+  background: #4fd68e;
+}
+
+
+/* ============================================================
+   SECCION 13: GRAFICA DE REPORTES (barras ingreso vs gasto)
+   HTML donde se usa: reportes.html. Clases con prefijo "rep-".
+   ============================================================ */
+
+.rep-chart-wrap {
+  display: flex;
+}
+
+.rep-chart-yaxis {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 11px;
+  color: #777;
+  padding-right: 8px;
+  height: 170px;
+}
+
+.rep-chart-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 26px;
+  height: 170px;
+  flex: 1;
+  border-left: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  padding-left: 16px;
+}
+
+/* Cada "par" de barras: una de ingreso y una de gasto, juntas */
+.rep-bar-pair {
+  display: flex;
+  gap: 6px;
+  align-items: flex-end;
+}
+
+.rep-bar {
+  width: 22px;
+  border-radius: 3px 3px 0 0;
+}
+
+.rep-bar.ingreso {
+  background: #21c99a;
+}
+
+.rep-bar.gasto {
+  background: #d13b3b;
+}
+
+.rep-bar-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.rep-bar-label {
+  font-size: 11px;
+  color: #1c2438;
+  font-weight: 600;
+}
+
+/* Barra de filtros arriba de reportes.html (fechas, categoría, etc.) */
+.filter-bar {
+  background: #fff;
+  border-radius: 10px;
+  padding: 16px 20px;
+  display: flex;
+  gap: 20px;
+  align-items: flex-end;
+  margin-bottom: 20px;
+}
+
+.btn-descargar {
+  background: #eef2fb;
+  color: #2f6df6;
+  border: none;
+  padding: 5px 14px;
+  border-radius: 14px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+
+/* ============================================================
+   SECCION 14: PAGINA DE VENTAS
+   HTML donde se usa: solo en ventas.html. Nombres únicos para
+   que no choquen con el resto del CSS.
+   ============================================================ */
+
+/* Divide la pantalla en dos columnas: catálogo (izq) y resumen de venta (der) */
+.ventas-panel {
+  display: flex;
+  gap: 24px;
+}
+
+.panel-left {
+  flex: 1;
+}
+
+.panel-right {
+  width: 220px;
+  flex-shrink: 0;
+  border-left: 1px solid #eee;
+  padding-left: 22px;
+}
+
+.filters-row {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 16px;
+}
+
+.field-group.productos select {
+  width: 260px;
+}
+
+.field-group.cantidad select {
+  width: 70px;
+}
+
+.field-group.cliente select {
+  width: 130px;
+}
+
+/* Fila del resumen de venta (ej: "Subtotal ... RD$ ...") */
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  font-weight: 700;
+  color: #1c2438;
+  margin-bottom: 14px;
+}
+
+.summary-row.total {
+  border-top: 1px solid #eee;
+  padding-top: 10px;
+  margin-top: 4px;
+}
+
+.pago-section {
+  margin: 18px 0;
+}
+
+.pago-section .label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #1c2438;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.pago-options {
+  display: flex;
+  gap: 16px;
+  font-size: 13px;
+  color: #333;
+}
+
+.pago-options label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Botón verde grande de "Procesar Venta" */
+.btn-procesar {
+  width: 100%;
+  background: #cdeede;
+  color: #1c2438;
+  border: 1px solid #8fd6b3;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+
+/* ============================================================
+   SECCION 15: PAGINA DE CLIENTES
+   HTML donde se usa: solo en clientes.html.
+   ============================================================ */
+
+.panel-toolbar-left {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.panel-toolbar-left .section-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #1c2438;
+  margin: 0;
+}
+
+
+/* ============================================================
+   SECCION 16: PAGINA DE CONFIGURACION
+   HTML donde se usa: solo en configuracion.html.
+   ============================================================ */
+
+/* Divide la pantalla en dos columnas: formularios (izq) y ajustes (der) */
+.settings-grid {
+  display: flex;
+  gap: 20px;
+}
+
+.settings-main {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.settings-side {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Foto de perfil + nombre + botón de cambiar foto, arriba de la página */
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.avatar-lg {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #e2ecfb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  color: #3f7fe0;
+}
+
+.profile-header .name {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1c2438;
+}
+
+.profile-header .role {
+  font-size: 12px;
+  color: #777;
+}
+
+.btn-photo {
+  margin-left: auto;
+  background: #f0f1f4;
+  border: none;
+  padding: 7px 14px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #333;
+  cursor: pointer;
+}
+
+/* Fila de dos campos de formulario uno al lado del otro */
+.form-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+.form-row .field-group {
+  flex: 1;
+}
+
+/* Fila de "interruptor" (switch on/off), ej: "Recibir notificaciones" */
+.toggle-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.toggle-row:last-child {
+  border-bottom: none;
+}
+
+.toggle-row .label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1c2438;
+}
+
+.toggle-row .desc {
+  font-size: 11px;
+  color: #888;
+  margin-top: 2px;
+}
+
+/* El interruptor en sí (bolita que se mueve) -> <div class="switch"> / <div class="switch on"> */
+.switch {
+  position: relative;
+  width: 40px;
+  height: 22px;
+  background: #ddd;
+  border-radius: 20px;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.switch.on {
+  background: #21c99a;
+}
+
+.switch::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fff;
+  top: 3px;
+  left: 3px;
+  transition: 0.2s;
+}
+
+.switch.on::after {
+  left: 21px;
+}
+
+/* Caja roja de "Zona de peligro" (ej: eliminar cuenta) */
+.danger-zone {
+  border: 1px solid #f3caca;
+  background: #fdf3f3;
+  border-radius: 10px;
+  padding: 16px 20px;
+}
+
+.danger-zone h3 {
+  color: #c0392b;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.danger-zone p {
+  font-size: 12px;
+  color: #7a3535;
+  margin-bottom: 12px;
+}
+
+/* ============================================================
+   SECCION 17: BOTONES Y PANEL EXCLUSIVOS DE LA PAGINA DE VENTAS
+   */
+:root {
+  --ventas-color-eliminar: #d13b3b;
+  --ventas-color-eliminar-hover: #a83232;
+  --ventas-color-reusar: #1a9b75;
+  --ventas-color-reusar-hover: #157a5c;
+  --ventas-color-insertar: #2f6df6;
+  --ventas-color-insertar-hover: #2458d1;
+}
+
+/* Botón rojo pequeño para eliminar una fila (tabla de venta e historial) */
+.ventas-btn-eliminar {
+  background: var(--ventas-color-eliminar);
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+
+.ventas-btn-eliminar:hover {
+  background: var(--ventas-color-eliminar-hover);
+  transform: translateY(-1px);
+}
+
+/* Botón verde pequeño para "Editar" / "Guardar" / "Reusar" */
+.ventas-btn-reusar {
+  background: var(--ventas-color-reusar);
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+
+.ventas-btn-reusar:hover {
+  background: var(--ventas-color-reusar-hover);
+  transform: translateY(-1px);
+}
+
+/* Botón azul pequeño para "Insertar" desde el historial */
+.ventas-btn-insertar {
+  background: var(--ventas-color-insertar);
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+
+.ventas-btn-insertar:hover {
+  background: var(--ventas-color-insertar-hover);
+  transform: translateY(-1px);
+}
+
+/* Separación entre botones cuando van varios juntos en una celda */
+.ventas-btn-eliminar,
+.ventas-btn-reusar,
+.ventas-btn-insertar {
+  margin-right: 4px;
+}
+
+/* ------------------------------------------------------------
+   Panel del historial: oculto por defecto, se muestra con .show
+   Esto es lo que faltaba y hacía que el historial apareciera
+   siempre abierto sin que el usuario lo pidiera.
+   ------------------------------------------------------------ */
+#historialPanel {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.25s ease, opacity 0.2s ease;
+  margin-bottom: 10px;
+}
+
+#historialPanel.show {
+  max-height: 600px;
+  opacity: 1;
+  margin-bottom: 20px;
+}
+
+/* Mensaje que se muestra cuando la tabla de venta está vacía */
+.ventas-tabla-vacia {
+  text-align: center;
+  color: #999;
+  font-size: 13px;
+  padding: 16px 0;
+}
+

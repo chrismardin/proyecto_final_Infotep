@@ -1,0 +1,194 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Cromf Finanzas - Empleados</title>
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+
+<!-- ============================================================
+     MENU LATERAL (SIDEBAR)
+     Este bloque es IGUAL en las 10 páginas del sistema.
+     Los estilos de esto están en styles.css, SECCION 1.
+     ============================================================ -->
+<aside>
+  <div class="logo">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M3 17l6-6 4 4 8-8" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M15 7h6v6" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    Cromf Finanzas
+  </div>
+  <nav>
+  <a href="{% url 'dashboard' %}">🏠 Dashboard</a>
+  <a href="{% url 'productos' %}">📦 Productos</a>
+  <a href="{% url 'ventas' %}">🛒 Ventas</a>
+  <a href="{% url 'finanzas' %}">💲 Finanzas</a>
+  <a href="{% url 'inventario' %}">📥 Inventario</a>
+  <a href="{% url 'proyecciones' %}">📈 Proyecciones</a>
+  <a href="{% url 'clientes' %}">👤 Clientes</a>
+  <a href="{% url 'empleados' %}">🧑‍💼 Empleados</a>
+  <a href="{% url 'reportes' %}">📊 Reportes</a>
+  <a href="{% url 'configuracion' %}" class="config-link">⚙️ Configuracion</a>
+</nav>
+</aside>
+
+<main>
+  <!-- ============================================================
+       BARRA SUPERIOR (TOPBAR)
+       Título de la página + zona de usuario/notificaciones.
+       Estilos en styles.css, SECCION 2.
+       ============================================================ -->
+    <header class="topbar">
+    <h1>🧑‍💼 Empleados</h1>
+    <div class="admin-area">🔔 👤 Admin</div>
+  </header>
+
+    <!-- ============================================================
+       TARJETAS KPI (los recuadros con números grandes arriba)
+       Cada <div class="kpi-card"> es una tarjeta.
+       Estilos en styles.css, SECCION 4.
+       ============================================================ -->
+  <section class="kpi-row">
+    <div class="kpi-card blue">
+      <div class="kpi-top">
+        <span class="kpi-icon blue">🧑‍💼</span>
+        <span class="label">Total Empleados</span>
+      </div>
+      <div class="value">50</div>
+      <div class="sub">En 4 departamentos</div>
+    </div>
+    <div class="kpi-card green">
+      <div class="kpi-top">
+        <span class="kpi-icon green">✅</span>
+        <span class="label">Activos</span>
+      </div>
+      <div class="value">47</div>
+      <div class="sub">94% del total</div>
+    </div>
+    <div class="kpi-card orange">
+      <div class="kpi-top">
+        <span class="kpi-icon orange">💵</span>
+        <span class="label">Nomina Mensual</span>
+      </div>
+      <div class="value">RD$ 985,000.00</div>
+      <div class="sub">Total bruto</div>
+    </div>
+    <div class="kpi-card purple">
+      <div class="kpi-top">
+        <span class="kpi-icon purple">🏢</span>
+        <span class="label">Departamentos</span>
+      </div>
+      <div class="value">4</div>
+      <div class="sub">Ventas, Finanzas, Inventario, Admin</div>
+    </div>
+  </section>
+
+    <!-- ============================================================
+       PESTAÑAS (visual únicamente)
+       OJO: estos botones todavía NO tienen JavaScript conectado
+       en esta página (a diferencia de inventario.html, que sí
+       cambia de contenido al hacer clic). Por ahora solo se ve
+       cuál está "activa" con la clase .active.
+       Estilos en styles.css, SECCION 3.
+       ============================================================ -->
+  <div class="tabs">
+    <button class="active">Directorio General</button>
+    <button>Nomina</button>
+  </div>
+
+    <!-- ============================================================
+       PANEL PRINCIPAL (tabla / contenido de esta página)
+       Estilos en styles.css, SECCION 6 (panel) y SECCION 7 (tabla).
+       ============================================================ -->
+  <div class="panel">
+    <div class="panel-toolbar">
+      <div class="search-box">
+        🔍 <input type="text" placeholder="Buscar empleado...">
+      </div>
+      <button class="btn-add">+ Nuevo Empleado</button>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Puesto</th>
+          <th>Departamento</th>
+          <th>Telefono</th>
+          <th>Fecha Ingreso</th>
+          <th>Salario (RD$)</th>
+          <th>Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>E001</td>
+          <td>Rosa Peña</td>
+          <td>Vendedora</td>
+          <td>Ventas</td>
+          <td>809-555-1023</td>
+          <td>12-01-2023</td>
+          <td>RD$ 28,000.00</td>
+          <td><span class="estado activo">Activo</span></td>
+        </tr>
+        <tr>
+          <td>E002</td>
+          <td>Francisco Ventura</td>
+          <td>Contador</td>
+          <td>Finanzas</td>
+          <td>809-555-2045</td>
+          <td>03-05-2022</td>
+          <td>RD$ 42,000.00</td>
+          <td><span class="estado activo">Activo</span></td>
+        </tr>
+        <tr>
+          <td>E003</td>
+          <td>Monica Vega</td>
+          <td>Encargada Inventario</td>
+          <td>Inventario</td>
+          <td>809-555-3312</td>
+          <td>20-09-2024</td>
+          <td>RD$ 30,500.00</td>
+          <td><span class="estado activo">Activo</span></td>
+        </tr>
+        <tr>
+          <td>E004</td>
+          <td>Crismardin Castaño</td>
+          <td>Vendedor</td>
+          <td>Ventas</td>
+          <td>809-555-4487</td>
+          <td>08-02-2021</td>
+          <td>RD$ 27,500.00</td>
+          <td><span class="estado inactivo">Inactivo</span></td>
+        </tr>
+        <tr>
+          <td>E005</td>
+          <td>Juan Mendez</td>
+          <td>Administrador</td>
+          <td>Admin</td>
+          <td>809-400-8785</td>
+          <td>15-06-2020</td>
+          <td>RD$ 55,000.00</td>
+          <td><span class="estado activo">Activo</span></td>
+        </tr>
+        <tr>
+          <td>E006</td>
+          <td>Jose Gutierrez</td>
+          <td>Vendedor</td>
+          <td>Ventas</td>
+          <td>809-468-8255</td>
+          <td>01-11-2023</td>
+          <td>RD$ 27,000.00</td>
+          <td><span class="estado activo">Activo</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</main>
+
+</body>
+</html>

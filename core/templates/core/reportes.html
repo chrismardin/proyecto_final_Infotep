@@ -1,0 +1,200 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Cromf Finanzas - Reportes</title>
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+
+<!-- ============================================================
+     MENU LATERAL (SIDEBAR)
+     Este bloque es IGUAL en las 10 páginas del sistema.
+     Los estilos de esto están en styles.css, SECCION 1.
+     ============================================================ -->
+<aside>
+  <div class="logo">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M3 17l6-6 4 4 8-8" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M15 7h6v6" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    Cromf Finanzas
+  </div>
+  <nav>
+  <a href="{% url 'dashboard' %}">🏠 Dashboard</a>
+  <a href="{% url 'productos' %}">📦 Productos</a>
+  <a href="{% url 'ventas' %}">🛒 Ventas</a>
+  <a href="{% url 'finanzas' %}">💲 Finanzas</a>
+  <a href="{% url 'inventario' %}">📥 Inventario</a>
+  <a href="{% url 'proyecciones' %}">📈 Proyecciones</a>
+  <a href="{% url 'clientes' %}">👤 Clientes</a>
+  <a href="{% url 'empleados' %}">🧑‍💼 Empleados</a>
+  <a href="{% url 'reportes' %}">📊 Reportes</a>
+  <a href="{% url 'configuracion' %}" class="config-link">⚙️ Configuracion</a>
+</nav>
+  
+  
+</aside>
+
+<main>
+  <!-- ============================================================
+       BARRA SUPERIOR (TOPBAR)
+       Título de la página + zona de usuario/notificaciones.
+       Estilos en styles.css, SECCION 2.
+       ============================================================ -->
+    <header class="topbar">
+    <h1>📊 Reportes</h1>
+    <div class="admin-area">🔔 👤 Admin</div>
+  </header>
+
+    <!-- ============================================================
+       PESTAÑAS (visual únicamente)
+       OJO: estos botones todavía NO tienen JavaScript conectado
+       en esta página (a diferencia de inventario.html, que sí
+       cambia de contenido al hacer clic). Por ahora solo se ve
+       cuál está "activa" con la clase .active.
+       Estilos en styles.css, SECCION 3.
+       ============================================================ -->
+  <div class="tabs">
+    <button class="active">Financiero</button>
+    <button>Ventas</button>
+    <button>Inventario</button>
+  </div>
+
+  <div class="filter-bar">
+    <div class="field-group">
+      <label>Periodo</label>
+      <select>
+        <option>Este Mes</option>
+        <option>Mes Anterior</option>
+        <option>Este Trimestre</option>
+        <option>Este Año</option>
+      </select>
+    </div>
+    <div class="field-group">
+      <label>Desde</label>
+      <input type="date" value="2026-06-01">
+    </div>
+    <div class="field-group">
+      <label>Hasta</label>
+      <input type="date" value="2026-06-30">
+    </div>
+    <button class="btn-generar">Generar Reporte</button>
+    <button class="btn-export">⬇ Exportar PDF</button>
+  </div>
+
+    <!-- ============================================================
+       TARJETAS KPI (los recuadros con números grandes arriba)
+       Cada <div class="kpi-card"> es una tarjeta.
+       Estilos en styles.css, SECCION 4.
+       ============================================================ -->
+  <section class="kpi-row">
+    <div class="kpi-card">
+      <div class="label">Ingresos Totales</div>
+      <div class="value">RD$ 125,000.00</div>
+      <div class="sub up">▲ 12.5% Vs Mes Anterior</div>
+    </div>
+    <div class="kpi-card">
+      <div class="label">Gastos Totales</div>
+      <div class="value">RD$ 78,230.50</div>
+      <div class="sub down">▼ 4.3% Vs Mes Anterior</div>
+    </div>
+    <div class="kpi-card">
+      <div class="label">Utilidad Neta</div>
+      <div class="value">RD$ 46,769.50</div>
+      <div class="sub up">▲ 18.7% Vs Mes Anterior</div>
+    </div>
+  </section>
+
+  <div class="card">
+    <h3>Ingresos Vs Gastos Por Mes</h3>
+    <div class="legend">
+      <span><i class="dot" style="background:#21c99a;"></i>Ingresos</span>
+      <span><i class="dot" style="background:#d13b3b;"></i>Gastos</span>
+    </div>
+    <div class="chart-wrap">
+      <div class="chart-yaxis">
+        <span>RD$ 150K</span>
+        <span>RD$ 100K</span>
+        <span>RD$ 50K</span>
+        <span>0</span>
+      </div>
+      <div class="chart-bars">
+        <div class="bar-col">
+          <div class="bar-pair">
+            <div class="bar ingreso" style="height:110px;"></div>
+            <div class="bar gasto" style="height:70px;"></div>
+          </div>
+          <span class="bar-label">Marzo</span>
+        </div>
+        <div class="bar-col">
+          <div class="bar-pair">
+            <div class="bar ingreso" style="height:125px;"></div>
+            <div class="bar gasto" style="height:80px;"></div>
+          </div>
+          <span class="bar-label">Abril</span>
+        </div>
+        <div class="bar-col">
+          <div class="bar-pair">
+            <div class="bar ingreso" style="height:100px;"></div>
+            <div class="bar gasto" style="height:65px;"></div>
+          </div>
+          <span class="bar-label">Mayo</span>
+        </div>
+        <div class="bar-col">
+          <div class="bar-pair">
+            <div class="bar ingreso" style="height:150px;"></div>
+            <div class="bar gasto" style="height:78px;"></div>
+          </div>
+          <span class="bar-label">Junio</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Reportes Generados</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Tipo</th>
+          <th>Periodo</th>
+          <th>Fecha Generacion</th>
+          <th>Formato</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Reporte Financiero Junio</td>
+          <td>Financiero</td>
+          <td>01/06/26 - 30/06/26</td>
+          <td>01-07-2026</td>
+          <td>PDF</td>
+          <td><button class="btn-descargar">Descargar</button></td>
+        </tr>
+        <tr>
+          <td>Reporte De Ventas Mayo</td>
+          <td>Ventas</td>
+          <td>01/05/26 - 31/05/26</td>
+          <td>01-06-2026</td>
+          <td>PDF</td>
+          <td><button class="btn-descargar">Descargar</button></td>
+        </tr>
+        <tr>
+          <td>Reporte De Inventario Q2</td>
+          <td>Inventario</td>
+          <td>01/04/26 - 30/06/26</td>
+          <td>28-06-2026</td>
+          <td>Excel</td>
+          <td><button class="btn-descargar">Descargar</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</main>
+
+</body>
+</html>

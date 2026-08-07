@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Cromf Finanzas - Ventas</title>
+<link rel="stylesheet" href="css/ventas.css">
+</head>
+<body>
+
+<aside>
+  <div class="logo">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M3 17l6-6 4 4 8-8" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M15 7h6v6" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    Cromf Finanzas
+  </div>
+  <nav>
+    <a href="dashboard.html">🏠 Dashboard</a>
+    <a href="productos.html">📦 Productos</a>
+    <a href="ventas.html" class="active">🛒 Ventas</a>
+    <a href="finanzas.html">💲 Finanzas</a>
+    <a href="inventario.html">📥 Inventario</a>
+    <a href="proyecciones.html">📈 Proyecciones</a>
+    <a href="clientes.html">👤 Clientes</a>
+    <a href="empleados.html">🧑‍💼 Empleados</a>
+    <a href="reportes.html">📊 Reportes</a>
+    <a href="configuracion.html" class="config-link">⚙️ Configuracion</a>
+  </nav>
+</aside>
+
+<main>
+  <header class="topbar">
+    <h1>🛒 Ventas</h1>
+    <div class="admin-area">👤 Admin</div>
+  </header>
+
+  <div class="tabs">
+    <button class="active">Nueva Venta</button>
+    <button>Historial</button>
+  </div>
+
+  <div class="panel">
+
+    <div class="panel-left">
+      <div class="filters-row">
+        <div class="field-group productos">
+          <label>Productos</label>
+          <select>
+            <option>Seleccionar Producto</option>
+            <option>Notebook</option>
+            <option>Lapicero</option>
+            <option>Cuaderno</option>
+            <option>Lapiz</option>
+          </select>
+        </div>
+        <div class="field-group cantidad">
+          <label>Cantidad</label>
+          <select>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+          </select>
+        </div>
+        <div class="field-group cliente">
+          <label>Cliente</label>
+          <select>
+            <option>Publico</option>
+            <option>Empresa</option>
+            <option>Frecuente</option>
+          </select>
+        </div>
+        <button class="btn-add">Agregar Productos</button>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>SKU/Cod</th>
+            <th>Nombre</th>
+            <th>Cantidad</th>
+            <th>Precio</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+  <td>L001</td>
+  <td>Laptop HP Pavilion 15"</td>
+  <td>1</td>
+  <td>RD$ 22,500.00</td>
+  <td>RD$ 22,500.00</td>
+</tr>
+<tr>
+  <td>P002</td>
+  <td>Mouse Inalambrico Logitech M170</td>
+  <td>3</td>
+  <td>RD$ 650.00</td>
+  <td>RD$ 1,950.00</td>
+</tr>
+<tr>
+  <td>D002</td>
+  <td>Monitor LG 24" Full HD</td>
+  <td>2</td>
+  <td>RD$ 6,500.00</td>
+  <td>RD$ 13,000.00</td>
+</tr>
+<tr>
+  <td>P001</td>
+  <td>Teclado Mecanico Logitech</td>
+  <td>1</td>
+  <td>RD$ 3,200.00</td>
+  <td>RD$ 3,200.00</td>
+</tr>
+<tr>
+  <td>A002</td>
+  <td>SSD Kingston 480GB</td>
+  <td>4</td>
+  <td>RD$ 2,400.00</td>
+  <td>RD$ 9,600.00</td>
+</tr>
+<tr>
+  <td>I003</td>
+  <td>Cartucho De Tinta HP 664 Negro</td>
+  <td>5</td>
+  <td>RD$ 850.00</td>
+  <td>RD$ 4,250.00</td>
+</tr>
+<tr>
+  <td>L003</td>
+  <td>Laptop Lenovo ThinkPad E14</td>
+  <td>1</td>
+  <td>RD$ 26,000.00</td>
+  <td>RD$ 26,000.00</td>
+</tr>
+<tr>
+  <td>V001</td>
+  <td>Webcam Logitech C270</td>
+  <td>2</td>
+  <td>RD$ 1,800.00</td>
+  <td>RD$ 3,600.00</td>
+</tr>
+<tr>
+  <td>A003</td>
+  <td>Memoria USB SanDisk 32GB</td>
+  <td>6</td>
+  <td>RD$ 450.00</td>
+  <td>RD$ 2,700.00</td>
+</tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="panel-right">
+      <div class="summary-row">
+        <span>Subtotal</span>
+        <span>RD$ 755.00</span>
+      </div>
+      <div class="summary-row">
+        <span>ITBS</span>
+        <span>RD$ 2500.00</span>
+      </div>
+      <div class="summary-row total">
+        <span>Total</span>
+        <span>RD$ 865.00</span>
+      </div>
+
+      <div class="pago-section">
+        <span class="label">Pago</span>
+        <div class="pago-options">
+          <label><input type="radio" name="pago" checked> Efectivo</label>
+          <label><input type="radio" name="pago"> Tarjeta</label>
+        </div>
+      </div>
+
+      <button class="btn-procesar">Procesar Venta</button>
+    </div>
+
+  </div>
+</main>
+
+</body>
+</html>

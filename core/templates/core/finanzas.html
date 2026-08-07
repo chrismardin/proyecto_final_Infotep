@@ -1,0 +1,147 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Cromf Finanzas - Finanzas</title>
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+
+<!-- ============================================================
+     MENU LATERAL (SIDEBAR)
+     Este bloque es IGUAL en las 10 páginas del sistema.
+     Los estilos de esto están en styles.css, SECCION 1.
+     ============================================================ -->
+<aside>
+  <div class="logo">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M3 17l6-6 4 4 8-8" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M15 7h6v6" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    Cromf Finanzas
+  </div>
+  <nav>
+  <a href="{% url 'dashboard' %}">🏠 Dashboard</a>
+  <a href="{% url 'productos' %}">📦 Productos</a>
+  <a href="{% url 'ventas' %}">🛒 Ventas</a>
+  <a href="{% url 'finanzas' %}">💲 Finanzas</a>
+  <a href="{% url 'inventario' %}">📥 Inventario</a>
+  <a href="{% url 'proyecciones' %}">📈 Proyecciones</a>
+  <a href="{% url 'clientes' %}">👤 Clientes</a>
+  <a href="{% url 'empleados' %}">🧑‍💼 Empleados</a>
+  <a href="{% url 'reportes' %}">📊 Reportes</a>
+  <a href="{% url 'configuracion' %}" class="config-link">⚙️ Configuracion</a>
+</nav>
+</aside>
+
+<main>
+  <!-- ============================================================
+       BARRA SUPERIOR (TOPBAR)
+       Título de la página + zona de usuario/notificaciones.
+       Estilos en styles.css, SECCION 2.
+       ============================================================ -->
+    <header class="topbar">
+    <h1>💰 Ingresos</h1>
+    <div class="admin-area">
+      <span class="avatar">👤</span> Admin
+    </div>
+  </header>
+
+    <!-- ============================================================
+       PESTAÑAS (visual únicamente)
+       OJO: estos botones todavía NO tienen JavaScript conectado
+       en esta página (a diferencia de inventario.html, que sí
+       cambia de contenido al hacer clic). Por ahora solo se ve
+       cuál está "activa" con la clase .active.
+       Estilos en styles.css, SECCION 3.
+       ============================================================ -->
+  <div class="tabs">
+    <button class="active">Ingresos</button>
+    <button>Gastos</button>
+    <button>Historial</button>
+  </div>
+
+    <!-- ============================================================
+       PANEL PRINCIPAL (tabla / contenido de esta página)
+       Estilos en styles.css, SECCION 6 (panel) y SECCION 7 (tabla).
+       ============================================================ -->
+  <div class="panel">
+    <div class="panel-toolbar">
+      <div class="search-box">
+        🔍 <input type="text" placeholder="Buscar...">
+      </div>
+      <button class="btn-add">+ Nuevo Registro</button>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>ID Cliente</th>
+          <th>Fecha</th>
+          <th>Categoria</th>
+          <th>Cliente</th>
+          <th>Monto (RD$)</th>
+          <th>Medio de pago</th>
+          <th>Factura</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1001</td>
+          <td>27-09-2026</td>
+          <td>Venta Laptop</td>
+          <td>Rosa Peña</td>
+          <td>RD$ 43,250.00</td>
+          <td>Banco BHD</td>
+          <td>F000001</td>
+        </tr>
+        <tr>
+          <td>1002</td>
+          <td>28-09-2026</td>
+          <td>Servicio Consultoria</td>
+          <td>Francisco Ventura</td>
+          <td>RD$ 26,000.00</td>
+          <td>Caja Chica</td>
+          <td>F000019</td>
+        </tr>
+        <tr>
+          <td>1010</td>
+          <td>28-09-2026</td>
+          <td>Venta Impresora</td>
+          <td>Crismardin Castaño</td>
+          <td>RD$ 23,000.00</td>
+          <td>Caja Chica</td>
+          <td>F000025</td>
+        </tr>
+        <tr>
+          <td>1020</td>
+          <td>29-09-2028</td>
+          <td>Asesoria</td>
+          <td>Monica Vega</td>
+          <td>RD$ 15,000.00</td>
+          <td>Banco BHD</td>
+          <td>Rec.033</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="table-total">
+      <span>Total</span>
+      <span>RD$ 26,000.00</span>
+    </div>
+  </div>
+
+    <!-- ============================================================
+       ALERTAS DEL MODULO IA
+       Estilos en styles.css, SECCION 9.
+       ============================================================ -->
+  <div class="alerts">
+    <h3>💡 Modulo IA: Alertas Inteligentes (RF-09, RF-10)</h3>
+    <p>⚠️ IA Alerta: La categoria "Venta Cuadernos" presenta mayor ingreso este mes.</p>
+    <p>💡 IA Recomienda: Considere optimizar el stock para el pico de ventas.</p>
+  </div>
+</main>
+
+</body>
+</html>

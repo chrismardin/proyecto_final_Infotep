@@ -1,0 +1,212 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Cromf Finanzas - Dashboard</title>
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <script src="{% static 'js/dashboard.js' %}"></script>
+
+</head>
+
+<body>
+
+  <!-- ============================================================
+     MENU LATERAL (SIDEBAR)
+     Este bloque es IGUAL en las 10 páginas del sistema.
+     Los estilos de esto están en styles.css, SECCION 1.
+     ============================================================ -->
+  <aside>
+    <div class="logo">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M3 17l6-6 4 4 8-8" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M15 7h6v6" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+      Cromf Finanzas
+    </div>
+    <nav>
+      <a href="{% url 'dashboard' %}">🏠 Dashboard</a>
+      <a href="{% url 'productos' %}">📦 Productos</a>
+      <a href="{% url 'ventas' %}">🛒 Ventas</a>
+      <a href="{% url 'finanzas' %}">💲 Finanzas</a>
+      <a href="{% url 'inventario' %}">📥 Inventario</a>
+      <a href="{% url 'proyecciones' %}">📈 Proyecciones</a>
+      <a href="{% url 'clientes' %}">👤 Clientes</a>
+      <a href="{% url 'empleados' %}">🧑‍💼 Empleados</a>
+      <a href="{% url 'reportes' %}">📊 Reportes</a>
+      <a href="{% url 'configuracion' %}" class="config-link">⚙️ Configuracion</a>
+    </nav>
+  </aside>
+
+  <main>
+    <!-- ============================================================
+       BARRA SUPERIOR (TOPBAR)
+       Título de la página + zona de usuario/notificaciones.
+       Estilos en styles.css, SECCION 2.
+       ============================================================ -->
+    <header class="topbar">
+      <h1>🏠 Dashboard</h1>
+      <div class="admin-area">👤 Admin 🔔</div>
+    </header>
+
+    <h2 class="section-title">KPI</h2>
+
+    <!-- ============================================================
+       TARJETAS KPI (los recuadros con números grandes arriba)
+       Cada <div class="kpi-card"> es una tarjeta.
+       Estilos en styles.css, SECCION 4.
+       ============================================================ -->
+
+    <!--
+       AVISO: los valores "RD$ 25,150.00" etc. de abajo estan escritos
+     a mano. La vista dashboard() en views.py ya calcula y envia
+     total_ingresos, total_gastos y ganancia_neta con datos reales.
+
+
+          Para usarlos, cambia por ejemplo:
+       <div class="value">RD$ 25,150.00</div>
+     por:
+       <div class="value">RD$ {{ total_ingresos }}</div>
+     (y lo mismo con total_gastos y ganancia_neta en las otras 2 tarjetas)
+    -->
+
+
+
+    <section class="kpi-row">
+      <div class="kpi-card">
+        <h3>Ventas del Mes (RD$)</h3>
+        <div class="value">RD$ {{ total_ventas_mes|floatformat:2 }}</div>
+        <div class="sub up">▲ 11.5% Vs Mes Anterior</div>
+
+      </div>
+
+      <div class="kpi-card">
+        <div class="label">Gastos Operativos (RD$)</div>
+        <div class="value">RD$ 15,350.00</div>
+        <div class="sub down">▼ 11.3% Vs Mes Anterior</div>
+      </div>
+      <div class="kpi-card">
+        <div class="label">Ganancias Netas (RD$)</div>
+        <div class="value">RD$ 10,250.00</div>
+        <div class="sub neutral">Margen De Ganancia 10.3%</div>
+      </div>
+    </section>
+    <div class="card">
+      <h3>Ventas Mensuales Por Categoria</h3>
+      <div class="legend">
+        <span><i class="dot" style="background:#d21f1f;"></i>Cat 1</span>
+        <span><i class="dot" style="background:#6e1414;"></i>Cat 2</span>
+        <span><i class="dot" style="background:#1f9e82;"></i>Cat 3</span>
+        <span><i class="dot" style="background:#7a2fa5;"></i>Cat 4</span>
+      </div>
+      <div class="dash-chart-wrap">
+        <div class="dash-chart-yaxis">
+          <span>RD$ 2500.00</span>
+          <span>RD$ 2000.00</span>
+          <span>RD$ 1500.00</span>
+          <span>RD$ 1000.00</span>
+          <span>RD$ 500.00</span>
+          <span>0.0</span>
+        </div>
+        <div class="dash-chart-bars">
+          <div class="dash-bar-stack" style="height:65%;">
+            <div class="dash-seg-cat1" style="height:25%;"></div>
+            <div class="dash-seg-cat2" style="height:20%;"></div>
+            <div class="dash-seg-cat3" style="height:35%;"></div>
+            <div class="dash-seg-cat4" style="height:20%;"></div>
+          </div>
+          <div class="dash-bar-stack" style="height:72%;">
+            <div class="dash-seg-cat1" style="height:22%;"></div>
+            <div class="dash-seg-cat2" style="height:20%;"></div>
+            <div class="dash-seg-cat3" style="height:33%;"></div>
+            <div class="dash-seg-cat4" style="height:25%;"></div>
+          </div>
+          <div class="dash-bar-stack" style="height:80%;">
+            <div class="dash-seg-cat1" style="height:20%;"></div>
+            <div class="dash-seg-cat2" style="height:18%;"></div>
+            <div class="dash-seg-cat3" style="height:32%;"></div>
+            <div class="dash-seg-cat4" style="height:30%;"></div>
+          </div>
+          <div class="dash-bar-stack" style="height:88%;">
+            <div class="dash-seg-cat1" style="height:20%;"></div>
+            <div class="dash-seg-cat2" style="height:18%;"></div>
+            <div class="dash-seg-cat3" style="height:30%;"></div>
+            <div class="dash-seg-cat4" style="height:32%;"></div>
+          </div>
+          <div class="dash-bar-stack" style="height:95%;">
+            <div class="dash-seg-cat1" style="height:18%;"></div>
+            <div class="dash-seg-cat2" style="height:17%;"></div>
+            <div class="dash-seg-cat3" style="height:30%;"></div>
+            <div class="dash-seg-cat4" style="height:35%;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <h3><u>Ultimos Movimientos Financieros</u></h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Fecha</th>
+            <th>Tipo Transaccion</th>
+            <th>Descripcion</th>
+            <th>Ventas Cuaderno</th>
+            <th class="amount">&nbsp;</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>17-06-2026</td>
+            <td>Pago Luz</td>
+            <td>Pago Luz</td>
+            <td></td>
+            <td class="amount">RD$ 35,220.00</td>
+          </tr>
+          <tr>
+            <td><strong>02-03-2026</strong></td>
+            <td>Inventario</td>
+            <td>Compra Stock</td>
+            <td><strong>Compra Stock</strong></td>
+            <td class="amount"><strong>RD$ 1,880.00</strong></td>
+          </tr>
+          <tr>
+            <td>25-01-2026</td>
+            <td>Inventario</td>
+            <td>Compra Stock</td>
+            <td></td>
+            <td class="amount">RD$ 880.00</td>
+          </tr>
+          <tr>
+            <td>22-07-2026</td>
+            <td>Inventario</td>
+            <td>Compra Stock</td>
+            <td></td>
+            <td class="amount">RD$ 250.00</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="amount">RD$29,350.00</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ============================================================
+       ALERTAS DEL MODULO IA
+       Estilos en styles.css, SECCION 9.
+       ============================================================ -->
+    <div class="alerts">
+      <h3>Modulo Ia: Alertas Inteligentes</h3>
+      <p class="alert-danger">Alerta de Stock: Quedan Menos de 10 Unidades de Lapiceros (A00L1)</p>
+      <p>Recomendacion Ia: El Producto Lapicero Azul Tiene Mayor Demanda, Considere Aumentar El Stock</p>
+      <p>Recomendacion Ia: La Demanda del Producto Sacapunta, Se Encuentra en Una Caida del 19%</p>
+    </div>
+  </main>
+
+</body>
+
+</html>

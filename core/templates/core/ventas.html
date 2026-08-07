@@ -1,0 +1,135 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Cromf Finanzas - Ventas</title>
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+
+<body>
+
+  <aside>
+    <div class="logo">Cromf Finanzas</div>
+    <nav>
+      <a href="{% url 'dashboard' %}">🏠 Dashboard</a>
+      <a href="{% url 'productos' %}">📦 Productos</a>
+      <a href="{% url 'ventas' %}">🛒 Ventas</a>
+      <a href="{% url 'finanzas' %}">💲 Finanzas</a>
+      <a href="{% url 'inventario' %}">📥 Inventario</a>
+      <a href="{% url 'proyecciones' %}">📈 Proyecciones</a>
+      <a href="{% url 'clientes' %}">👤 Clientes</a>
+      <a href="{% url 'empleados' %}">🧑‍💼 Empleados</a>
+      <a href="{% url 'reportes' %}">📊 Reportes</a>
+      <a href="{% url 'configuracion' %}" class="config-link">⚙️ Configuracion</a>
+    </nav>
+  </aside>
+
+  <main>
+    <header class="topbar">
+      <h1>🛒 Ventas</h1>
+      <div class="admin-area">👤 Admin</div>
+    </header>
+
+    <!-- ====================================== -->
+    <!-- PESTAÑAS: cambian entre "Nueva Venta" e "Historial" -->
+    <!-- ====================================== -->
+    <div class="tabs">
+      <button id="tabNuevaVenta" class="active">Nueva Venta</button>
+      <button id="tabHistorial">Historial</button>
+    </div>
+
+    <div class="panel ventas-panel">
+
+      <!-- Panel izquierdo -->
+      <div class="panel-left">
+
+        <!-- ====================================== -->
+        <!-- HISTORIAL DE PRODUCTOS (se muestra con la pestaña "Historial") -->
+        <!-- ====================================== -->
+        <div id="historialPanel">
+          <h3>Historial de productos</h3>
+          <table id="tablaHistorialMini">
+            <thead>
+              <tr>
+                <th>SKU</th>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Acción</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+
+        <!-- ====================================== -->
+        <!-- FORMULARIO: AGREGAR PRODUCTO MANUALMENTE -->
+        <!-- ====================================== -->
+        <div id="formularioVenta">
+          <h3>Agregar producto manualmente</h3>
+          <div class="filters-row">
+            <div class="field-group sku">
+              <label>SKU/Cod</label>
+              <input type="text" id="sku" placeholder="Ej: P001">
+            </div>
+            <div class="field-group producto">
+              <label>Nombre</label>
+              <input type="text" id="producto" placeholder="Nombre del producto">
+            </div>
+            <div class="field-group cantidad">
+              <label>Cantidad</label>
+              <input type="number" id="cantidad" min="1" value="1">
+            </div>
+            <div class="field-group precio">
+              <label>Precio (RD$)</label>
+              <input type="number" id="precio" min="0" step="0.01">
+            </div>
+            <button class="btn-add" id="botonAgregarProducto">Agregar Producto</button>
+          </div>
+
+          <!-- ====================================== -->
+          <!-- TABLA: VENTA ACTUAL -->
+          <!-- ====================================== -->
+          <h3>Venta actual</h3>
+          <table id="tablaVenta">
+            <thead>
+              <tr>
+                <th>SKU/Cod</th>
+                <th>Nombre</th>
+                <th>Cantidad</th>
+                <th>Precio</th>
+                <th>Total</th>
+                <th>Acción</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ====================================== -->
+      <!-- RESUMEN DE LA VENTA -->
+      <!-- ====================================== -->
+      <div class="panel-right">
+        <div class="summary-row"><span>Subtotal</span><span class="subtotal">RD$ 0.00</span></div>
+        <div class="summary-row"><span>ITBIS</span><span class="itbis">RD$ 0.00</span></div>
+        <div class="summary-row total"><span>Total</span><span class="total">RD$ 0.00</span></div>
+        <div class="pago-section">
+          <span class="label">Pago</span>
+          <div class="pago-options">
+            <label><input type="radio" name="pago" value="efectivo" checked> Efectivo</label>
+            <label><input type="radio" name="pago" value="tarjeta"> Tarjeta</label>
+          </div>
+        </div>
+        <button class="btn-procesar" id="botonProcesarVenta">Procesar Venta</button>
+      </div>
+
+    </div>
+  </main>
+
+  {{ historial_json|json_script:"historial-data" }}
+  <script src="{% static 'js/ventas.js' %}"></script>
+</body>
+
+</html>
