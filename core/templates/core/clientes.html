@@ -8,6 +8,11 @@
 </head>
 <body>
 
+<!-- ============================================================
+     MENU LATERAL (SIDEBAR)
+     Este bloque es IGUAL en las 10 páginas del sistema.
+     Los estilos de esto están en styles.css, SECCION 1.
+     ============================================================ -->
 <aside>
   <div class="logo">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -31,15 +36,32 @@
 </aside>
 
 <main>
-  <header class="topbar">
+  <!-- ============================================================
+       BARRA SUPERIOR (TOPBAR)
+       Título de la página + zona de usuario/notificaciones.
+       Estilos en styles.css, SECCION 2.
+       ============================================================ -->
+    <header class="topbar">
     <h1>👤 Clientes</h1>
     <div class="admin-area">🔔 👤 Admin</div>
   </header>
 
+    <!-- ============================================================
+       PESTAÑAS (visual únicamente)
+       OJO: estos botones todavía NO tienen JavaScript conectado
+       en esta página (a diferencia de inventario.html, que sí
+       cambia de contenido al hacer clic). Por ahora solo se ve
+       cuál está "activa" con la clase .active.
+       Estilos en styles.css, SECCION 3.
+       ============================================================ -->
   <div class="tabs">
     <button class="active">Directorio General</button>
   </div>
 
+    <!-- ============================================================
+       PANEL PRINCIPAL (tabla / contenido de esta página)
+       Estilos en styles.css, SECCION 6 (panel) y SECCION 7 (tabla).
+       ============================================================ -->
   <div class="panel">
     <div class="panel-toolbar">
       <div class="panel-toolbar-left">

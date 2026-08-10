@@ -8,6 +8,11 @@
 </head>
 <body>
 
+<!-- ============================================================
+     MENU LATERAL (SIDEBAR)
+     Este bloque es IGUAL en las 10 páginas del sistema.
+     Los estilos de esto están en styles.css, SECCION 1.
+     ============================================================ -->
 <aside>
   <div class="logo">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -31,11 +36,21 @@
 </aside>
 
 <main>
-  <header class="topbar">
+  <!-- ============================================================
+       BARRA SUPERIOR (TOPBAR)
+       Título de la página + zona de usuario/notificaciones.
+       Estilos en styles.css, SECCION 2.
+       ============================================================ -->
+    <header class="topbar">
     <h1>🧑‍💼 Empleados</h1>
     <div class="admin-area">🔔 👤 Admin</div>
   </header>
 
+    <!-- ============================================================
+       TARJETAS KPI (los recuadros con números grandes arriba)
+       Cada <div class="kpi-card"> es una tarjeta.
+       Estilos en styles.css, SECCION 4.
+       ============================================================ -->
   <section class="kpi-row">
     <div class="kpi-card blue">
       <div class="kpi-top">
@@ -71,11 +86,23 @@
     </div>
   </section>
 
+    <!-- ============================================================
+       PESTAÑAS (visual únicamente)
+       OJO: estos botones todavía NO tienen JavaScript conectado
+       en esta página (a diferencia de inventario.html, que sí
+       cambia de contenido al hacer clic). Por ahora solo se ve
+       cuál está "activa" con la clase .active.
+       Estilos en styles.css, SECCION 3.
+       ============================================================ -->
   <div class="tabs">
     <button class="active">Directorio General</button>
     <button>Nomina</button>
   </div>
 
+    <!-- ============================================================
+       PANEL PRINCIPAL (tabla / contenido de esta página)
+       Estilos en styles.css, SECCION 6 (panel) y SECCION 7 (tabla).
+       ============================================================ -->
   <div class="panel">
     <div class="panel-toolbar">
       <div class="search-box">

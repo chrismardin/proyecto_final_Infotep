@@ -1,187 +1,135 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-<meta charset="UTF-8">
-<title>Cromf Finanzas - Ventas</title>
-<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <meta charset="UTF-8">
+  <title>Cromf Finanzas - Ventas</title>
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
+
 <body>
 
-<aside>
-  <div class="logo">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-      <path d="M3 17l6-6 4 4 8-8" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M15 7h6v6" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-    Cromf Finanzas
-  </div>
-  <nav>
-  <a href="{% url 'dashboard' %}">🏠 Dashboard</a>
-  <a href="{% url 'productos' %}">📦 Productos</a>
-  <a href="{% url 'ventas' %}">🛒 Ventas</a>
-  <a href="{% url 'finanzas' %}">💲 Finanzas</a>
-  <a href="{% url 'inventario' %}">📥 Inventario</a>
-  <a href="{% url 'proyecciones' %}">📈 Proyecciones</a>
-  <a href="{% url 'clientes' %}">👤 Clientes</a>
-  <a href="{% url 'empleados' %}">🧑‍💼 Empleados</a>
-  <a href="{% url 'reportes' %}">📊 Reportes</a>
-  <a href="{% url 'configuracion' %}" class="config-link">⚙️ Configuracion</a>
-</nav>
-</aside>
+  <aside>
+    <div class="logo">Cromf Finanzas</div>
+    <nav>
+      <a href="{% url 'dashboard' %}">🏠 Dashboard</a>
+      <a href="{% url 'productos' %}">📦 Productos</a>
+      <a href="{% url 'ventas' %}">🛒 Ventas</a>
+      <a href="{% url 'finanzas' %}">💲 Finanzas</a>
+      <a href="{% url 'inventario' %}">📥 Inventario</a>
+      <a href="{% url 'proyecciones' %}">📈 Proyecciones</a>
+      <a href="{% url 'clientes' %}">👤 Clientes</a>
+      <a href="{% url 'empleados' %}">🧑‍💼 Empleados</a>
+      <a href="{% url 'reportes' %}">📊 Reportes</a>
+      <a href="{% url 'configuracion' %}" class="config-link">⚙️ Configuracion</a>
+    </nav>
+  </aside>
 
-<main>
-  <header class="topbar">
-    <h1>🛒 Ventas</h1>
-    <div class="admin-area">👤 Admin</div>
-  </header>
+  <main>
+    <header class="topbar">
+      <h1>🛒 Ventas</h1>
+      <div class="admin-area">👤 Admin</div>
+    </header>
 
-  <div class="tabs">
-    <button class="active">Nueva Venta</button>
-    <button>Historial</button>
-  </div>
-
-  <div class="panel ventas-panel">
-
-    <div class="panel-left">
-      <div class="filters-row">
-        <div class="field-group productos">
-          <label>Productos</label>
-          <select>
-            <option>Seleccionar Producto</option>
-            <option>L001 - Laptop HP Pavilion 15"</option>
-            <option>L003 - Laptop Lenovo ThinkPad E14</option>
-            <option>C001 - Computadora Escritorio</option>
-            <option>D002 - Monitor LG 24" Full HD</option>
-            <option>P001 - Teclado Mecanico Logitech</option>
-          </select>
-        </div>
-        <div class="field-group cantidad">
-          <label>Cantidad</label>
-          <select>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-          </select>
-        </div>
-        <div class="field-group cliente">
-          <label>Cliente</label>
-          <select>
-            <option>Publico</option>
-            <option>Empresa</option>
-            <option>Frecuente</option>
-          </select>
-        </div>
-        <button class="btn-add">Agregar Productos</button>
-      </div>
-
-      <table>
-        <thead>
-          <tr>
-            <th>SKU/Cod</th>
-            <th>Nombre</th>
-            <th>Cantidad</th>
-            <th>Precio</th>
-            <th>Total</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-  <td>L001</td>
-  <td>Laptop HP Pavilion 15"</td>
-  <td>1</td>
-  <td>RD$ 22,500.00</td>
-  <td>RD$ 22,500.00</td>
-</tr>
-<tr>
-  <td>P002</td>
-  <td>Mouse Inalambrico Logitech M170</td>
-  <td>3</td>
-  <td>RD$ 650.00</td>
-  <td>RD$ 1,950.00</td>
-</tr>
-<tr>
-  <td>D002</td>
-  <td>Monitor LG 24" Full HD</td>
-  <td>2</td>
-  <td>RD$ 6,500.00</td>
-  <td>RD$ 13,000.00</td>
-</tr>
-<tr>
-  <td>P001</td>
-  <td>Teclado Mecanico Logitech</td>
-  <td>1</td>
-  <td>RD$ 3,200.00</td>
-  <td>RD$ 3,200.00</td>
-</tr>
-<tr>
-  <td>A002</td>
-  <td>SSD Kingston 480GB</td>
-  <td>4</td>
-  <td>RD$ 2,400.00</td>
-  <td>RD$ 9,600.00</td>
-</tr>
-<tr>
-  <td>I003</td>
-  <td>Cartucho De Tinta HP 664 Negro</td>
-  <td>5</td>
-  <td>RD$ 850.00</td>
-  <td>RD$ 4,250.00</td>
-</tr>
-<tr>
-  <td>L003</td>
-  <td>Laptop Lenovo ThinkPad E14</td>
-  <td>1</td>
-  <td>RD$ 26,000.00</td>
-  <td>RD$ 26,000.00</td>
-</tr>
-<tr>
-  <td>V001</td>
-  <td>Webcam Logitech C270</td>
-  <td>2</td>
-  <td>RD$ 1,800.00</td>
-  <td>RD$ 3,600.00</td>
-</tr>
-<tr>
-  <td>A003</td>
-  <td>Memoria USB SanDisk 32GB</td>
-  <td>6</td>
-  <td>RD$ 450.00</td>
-  <td>RD$ 2,700.00</td>
-</tr>
-        </tbody>
-      </table>
+    <!-- ====================================== -->
+    <!-- PESTAÑAS: cambian entre "Nueva Venta" e "Historial" -->
+    <!-- ====================================== -->
+    <div class="tabs">
+      <button id="tabNuevaVenta" class="active">Nueva Venta</button>
+      <button id="tabHistorial">Historial</button>
     </div>
 
-    <div class="panel-right">
-      <div class="summary-row">
-        <span>Subtotal</span>
-        <span>RD$ 755.00</span>
-      </div>
-      <div class="summary-row">
-        <span>ITBS</span>
-        <span>RD$ 2500.00</span>
-      </div>
-      <div class="summary-row total">
-        <span>Total</span>
-        <span>RD$ 865.00</span>
-      </div>
+    <div class="panel ventas-panel">
 
-      <div class="pago-section">
-        <span class="label">Pago</span>
-        <div class="pago-options">
-          <label><input type="radio" name="pago" checked> Efectivo</label>
-          <label><input type="radio" name="pago"> Tarjeta</label>
+      <!-- Panel izquierdo -->
+      <div class="panel-left">
+
+        <!-- ====================================== -->
+        <!-- HISTORIAL DE PRODUCTOS (se muestra con la pestaña "Historial") -->
+        <!-- ====================================== -->
+        <div id="historialPanel">
+          <h3>Historial de productos</h3>
+          <table id="tablaHistorialMini">
+            <thead>
+              <tr>
+                <th>SKU</th>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Acción</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+
+        <!-- ====================================== -->
+        <!-- FORMULARIO: AGREGAR PRODUCTO MANUALMENTE -->
+        <!-- ====================================== -->
+        <div id="formularioVenta">
+          <h3>Agregar producto manualmente</h3>
+          <div class="filters-row">
+            <div class="field-group sku">
+              <label>SKU/Cod</label>
+              <input type="text" id="sku" placeholder="Ej: P001">
+            </div>
+            <div class="field-group producto">
+              <label>Nombre</label>
+              <input type="text" id="producto" placeholder="Nombre del producto">
+            </div>
+            <div class="field-group cantidad">
+              <label>Cantidad</label>
+              <input type="number" id="cantidad" min="1" value="1">
+            </div>
+            <div class="field-group precio">
+              <label>Precio (RD$)</label>
+              <input type="number" id="precio" min="0" step="0.01">
+            </div>
+            <button class="btn-add" id="botonAgregarProducto">Agregar Producto</button>
+          </div>
+
+          <!-- ====================================== -->
+          <!-- TABLA: VENTA ACTUAL -->
+          <!-- ====================================== -->
+          <h3>Venta actual</h3>
+          <table id="tablaVenta">
+            <thead>
+              <tr>
+                <th>SKU/Cod</th>
+                <th>Nombre</th>
+                <th>Cantidad</th>
+                <th>Precio</th>
+                <th>Total</th>
+                <th>Acción</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
         </div>
       </div>
 
-      <button class="btn-procesar">Procesar Venta</button>
+      <!-- ====================================== -->
+      <!-- RESUMEN DE LA VENTA -->
+      <!-- ====================================== -->
+      <div class="panel-right">
+        <div class="summary-row"><span>Subtotal</span><span class="subtotal">RD$ 0.00</span></div>
+        <div class="summary-row"><span>ITBIS</span><span class="itbis">RD$ 0.00</span></div>
+        <div class="summary-row total"><span>Total</span><span class="total">RD$ 0.00</span></div>
+        <div class="pago-section">
+          <span class="label">Pago</span>
+          <div class="pago-options">
+            <label><input type="radio" name="pago" value="efectivo" checked> Efectivo</label>
+            <label><input type="radio" name="pago" value="tarjeta"> Tarjeta</label>
+          </div>
+        </div>
+        <button class="btn-procesar" id="botonProcesarVenta">Procesar Venta</button>
+      </div>
+
     </div>
+  </main>
 
-  </div>
-</main>
-
+  {{ historial_json|json_script:"historial-data" }}
+  <script src="{% static 'js/ventas.js' %}"></script>
 </body>
+
 </html>

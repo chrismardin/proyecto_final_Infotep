@@ -8,6 +8,11 @@
 </head>
 <body>
 
+<!-- ============================================================
+     MENU LATERAL (SIDEBAR)
+     Este bloque es IGUAL en las 10 páginas del sistema.
+     Los estilos de esto están en styles.css, SECCION 1.
+     ============================================================ -->
 <aside>
   <div class="logo">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -31,11 +36,21 @@
 </aside>
 
 <main>
-  <header class="topbar">
+  <!-- ============================================================
+       BARRA SUPERIOR (TOPBAR)
+       Título de la página + zona de usuario/notificaciones.
+       Estilos en styles.css, SECCION 2.
+       ============================================================ -->
+    <header class="topbar">
     <h1>📥 Inventario</h1>
     <div class="admin-area">🔔 👤 Admin</div>
   </header>
 
+    <!-- ============================================================
+       TARJETAS KPI (los recuadros con números grandes arriba)
+       Cada <div class="kpi-card"> es una tarjeta.
+       Estilos en styles.css, SECCION 4.
+       ============================================================ -->
   <section class="kpi-row">
     <div class="kpi-card blue">
       <div class="kpi-top">
@@ -71,6 +86,12 @@
     </div>
   </section>
 
+    <!-- ============================================================
+       PESTAÑAS (TABS)
+       Al hacer clic, el JavaScript de abajo (función mostrarTab)
+       oculta/muestra el bloque correspondiente.
+       Estilos en styles.css, SECCION 3.
+       ============================================================ -->
   <div class="tabs">
     <button class="tab-btn active" data-tab="stock" onclick="mostrarTab('stock', this)">Stock Actual</button>
     <button class="tab-btn" data-tab="movimiento" onclick="mostrarTab('movimiento', this)">Movimiento De Stock</button>
@@ -79,7 +100,11 @@
 
   <!-- ===== TAB: STOCK ACTUAL ===== -->
   <div id="tab-stock" class="tab-content">
-    <div class="panel">
+      <!-- ============================================================
+       PANEL PRINCIPAL (tabla / contenido de esta página)
+       Estilos en styles.css, SECCION 6 (panel) y SECCION 7 (tabla).
+       ============================================================ -->
+  <div class="panel">
       <div class="panel-toolbar">
         <div class="search-box">
           🔍 <input type="text" id="buscar-producto" placeholder="Buscar producto..." onkeyup="filtrarTabla()">
@@ -100,6 +125,19 @@
           </tr>
         </thead>
         <tbody>
+   
+            <!--
+          {% for producto in productos %} ... {% endfor %}
+             Esto repite la fila <tr> UNA VEZ POR CADA producto que
+             haya en la base de datos (la lista "productos" la manda
+             la función inventario() en views.py).
+
+             Si quieres agregar una columna nueva a la tabla:
+             1. Agrega el <th>NombreColumna</th> arriba en el <thead>.
+             2. Agrega aquí abajo un <td>{{ producto.tu_campo }}</td>
+                (tu_campo debe existir en models.py, dentro de Producto).
+            --> 
+
           {% for producto in productos %}
           <tr>
             <td>{{ producto.sku }}</td>
@@ -108,6 +146,7 @@
             <td>{{ producto.stock }}</td>
             <td>{{ producto.stock_minimo }}</td>
             <td>
+              {# Este {% if %}/{% elif %}/{% else %} decide qué "pastilla" de color mostrar segun el estado del stock #}
               {% if producto.estado_stock == "Optimo" %}
                 <span class="estado ok">Optimo</span>
               {% elif producto.estado_stock == "Moderado" %}
@@ -119,15 +158,21 @@
             <td>{{ producto.fecha_creacion|date:"d-m-Y" }}</td>
           </tr>
           {% empty %}
+          {# {% empty %} se muestra SOLO si la lista "productos" esta vacia #}
           <tr>
             <td colspan="7">Todavia no hay productos registrados.</td>
           </tr>
           {% endfor %}
+          {# fin del {% for producto in productos %} #}
         </tbody>
       </table>
     </div>
 
-    <div class="alerts">
+      <!-- ============================================================
+       ALERTAS DEL MODULO IA
+       Estilos en styles.css, SECCION 9.
+       ============================================================ -->
+  <div class="alerts">
       <h3>💡 Modulo IA: Alertas Inteligentes</h3>
       <p>⚠️ IA Alerta: Quedan menos de 10 unidades de Lapicero Azul (A00L1).</p>
       <p>⚠️ IA Alerta: El producto Sacapuntas esta por debajo del stock minimo, considere reponer pronto.</p>
@@ -140,6 +185,12 @@
     <div class="panel">
       <h3 style="margin-bottom:16px;">Registrar Entrada o Salida</h3>
 
+            <!-- ============================================================
+           FORMULARIO
+           Cada campo viene del archivo forms.py (Django genera
+           el <input>/<select> automáticamente con {{ form.campo }}).
+           Estilos en styles.css, SECCION 10.
+           ============================================================ -->
       <form method="post">
         {% csrf_token %}
         <div class="filters-row">
@@ -258,19 +309,35 @@
 
 </main>
 
+<!-- ============================================================
+     JAVASCRIPT DE ESTA PAGINA
+     Aquí van las funciones que responden a clics, búsquedas,
+     pestañas (tabs), etc. Cada función tiene un comentario
+     arriba explicando qué hace.
+     ============================================================ -->
 <script>
+  // Se ejecuta cuando el usuario hace clic en una pestaña (Stock Actual / Movimiento / Historial).
+  // tabId = el nombre de la pestaña (ej: "stock"), btn = el boton en el que se hizo clic.
+  // Usa los ids "tab-stock", "tab-movimiento", "tab-historial" que estan en los <div> de arriba.
   function mostrarTab(tabId, btn) {
+    // Oculta todas las pestañas...
     document.querySelectorAll('.tab-content').forEach(el => el.style.display = 'none');
+    // ...y muestra solo la que se pidio
     document.getElementById('tab-' + tabId).style.display = 'block';
 
+    // Le quita el estilo "activo" a todos los botones de pestaña...
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    // ...y se lo pone solo al que se acaba de presionar
     btn.classList.add('active');
   }
 
+  // Se ejecuta cada vez que el usuario escribe algo en el buscador de "Stock Actual"
+  // (input con id="buscar-producto"). Oculta las filas de la tabla que no coincidan.
   function filtrarTabla() {
     const texto = document.getElementById('buscar-producto').value.toLowerCase();
     const filas = document.querySelectorAll('#tabla-stock tbody tr');
     filas.forEach(fila => {
+      // Si el texto de la fila NO contiene lo que se escribio, se oculta
       fila.style.display = fila.textContent.toLowerCase().includes(texto) ? '' : 'none';
     });
   }

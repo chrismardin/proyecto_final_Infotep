@@ -1,13 +1,19 @@
-{% load static %}
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <title>Cromf Finanzas - Productos</title>
-<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+<link rel="stylesheet" href="/static/css/styles.css">
 </head>
 <body>
 
+<!-- ============================================================
+     MENU LATERAL (SIDEBAR)
+     Este bloque es IGUAL en las 10 páginas del sistema.
+     Los estilos de esto están en styles.css, SECCION 1.
+     ============================================================ -->
 <aside>
   <div class="logo">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -17,30 +23,47 @@
     Cromf Finanzas
   </div>
   <nav>
-  <a href="{% url 'dashboard' %}">🏠 Dashboard</a>
-  <a href="{% url 'productos' %}">📦 Productos</a>
-  <a href="{% url 'ventas' %}">🛒 Ventas</a>
-  <a href="{% url 'finanzas' %}">💲 Finanzas</a>
-  <a href="{% url 'inventario' %}">📥 Inventario</a>
-  <a href="{% url 'proyecciones' %}">📈 Proyecciones</a>
-  <a href="{% url 'clientes' %}">👤 Clientes</a>
-  <a href="{% url 'empleados' %}">🧑‍💼 Empleados</a>
-  <a href="{% url 'reportes' %}">📊 Reportes</a>
-  <a href="{% url 'configuracion' %}" class="config-link">⚙️ Configuracion</a>
+  <a href="/">🏠 Dashboard</a>
+  <a href="/productos/">📦 Productos</a>
+  <a href="/ventas/">🛒 Ventas</a>
+  <a href="/finanzas/">💲 Finanzas</a>
+  <a href="/inventario/">📥 Inventario</a>
+  <a href="/proyecciones/">📈 Proyecciones</a>
+  <a href="/clientes/">👤 Clientes</a>
+  <a href="/empleados/">🧑‍💼 Empleados</a>
+  <a href="/reportes/">📊 Reportes</a>
+  <a href="/configuracion/" class="config-link">⚙️ Configuracion</a>
 </nav>
 </aside>
 
 <main>
-  <header class="topbar">
+  <!-- ============================================================
+       BARRA SUPERIOR (TOPBAR)
+       Título de la página + zona de usuario/notificaciones.
+       Estilos en styles.css, SECCION 2.
+       ============================================================ -->
+    <header class="topbar">
     <h1>📦 Productos</h1>
     <div class="admin-area">👤 Admin 🔔</div>
   </header>
 
+    <!-- ============================================================
+       PESTAÑAS (visual únicamente)
+       OJO: estos botones todavía NO tienen JavaScript conectado
+       en esta página (a diferencia de inventario.html, que sí
+       cambia de contenido al hacer clic). Por ahora solo se ve
+       cuál está "activa" con la clase .active.
+       Estilos en styles.css, SECCION 3.
+       ============================================================ -->
   <div class="tabs">
     <button class="active">Catalogo General</button>
     <button>Movimiento Stock</button>
   </div>
 
+    <!-- ============================================================
+       PANEL PRINCIPAL (tabla / contenido de esta página)
+       Estilos en styles.css, SECCION 6 (panel) y SECCION 7 (tabla).
+       ============================================================ -->
   <div class="panel">
     <div class="panel-toolbar">
       <div class="search-box">
@@ -63,6 +86,305 @@
         </tr>
       </thead>
       <tbody>
+
+          <!-- AVISO: las filas de aqui abajo estan escritas a mano
+           (no vienen de la base de datos). La vista productos() en
+           views.py ya envia la lista real de productos con el
+           nombre "productos", pero esta tabla no la usa todavia.
+
+           Para conectarla a la base de datos, reemplaza TODAS las
+           filas de abajo por esto (igual que en inventario.html): -->
+
+           
+           <tr>
+             <td>A001</td>
+             <td>Disco Duro Externo Seagate 2TB</td>
+             <td>Almacenamiento</td>
+             <td>RD$ 3100.00</td>
+             <td>RD$ 3100.00</td>
+             <td>20</td>
+           </tr>
+           
+           <tr>
+             <td>A002</td>
+             <td>SSD Kingston 480GB</td>
+             <td>Almacenamiento</td>
+             <td>RD$ 2400.00</td>
+             <td>RD$ 2400.00</td>
+             <td>25</td>
+           </tr>
+           
+           <tr>
+             <td>A003</td>
+             <td>Memoria USB SanDisk 32GB</td>
+             <td>Almacenamiento</td>
+             <td>RD$ 450.00</td>
+             <td>RD$ 450.00</td>
+             <td>60</td>
+           </tr>
+           
+           <tr>
+             <td>A004</td>
+             <td>Memoria RAM Kingston 8GB DDR4</td>
+             <td>Almacenamiento</td>
+             <td>RD$ 2100.00</td>
+             <td>RD$ 2100.00</td>
+             <td>30</td>
+           </tr>
+           
+           <tr>
+             <td>A005</td>
+             <td>Cargador Universal Laptop</td>
+             <td>Almacenamiento</td>
+             <td>RD$ 1300.00</td>
+             <td>RD$ 1300.00</td>
+             <td>28</td>
+           </tr>
+           
+           <tr>
+             <td>D001</td>
+             <td>PC Escritorio HP ProDesk</td>
+             <td>Escritorio</td>
+             <td>RD$ 21000.00</td>
+             <td>RD$ 21000.00</td>
+             <td>7</td>
+           </tr>
+           
+           <tr>
+             <td>D002</td>
+             <td>Monitor LG 24&quot; Full HD</td>
+             <td>Escritorio</td>
+             <td>RD$ 6500.00</td>
+             <td>RD$ 6500.00</td>
+             <td>20</td>
+           </tr>
+           
+           <tr>
+             <td>D003</td>
+             <td>Monitor Samsung 27&quot; Curvo</td>
+             <td>Escritorio</td>
+             <td>RD$ 11200.00</td>
+             <td>RD$ 11200.00</td>
+             <td>10</td>
+           </tr>
+           
+           <tr>
+             <td>D004</td>
+             <td>Monitor Dell 22&quot;</td>
+             <td>Escritorio</td>
+             <td>RD$ 5800.00</td>
+             <td>RD$ 5800.00</td>
+             <td>18</td>
+           </tr>
+           
+           <tr>
+             <td>D005</td>
+             <td>All-in-One HP 24&quot;</td>
+             <td>Escritorio</td>
+             <td>RD$ 28000.00</td>
+             <td>RD$ 28000.00</td>
+             <td>6</td>
+           </tr>
+           
+           <tr>
+             <td>I001</td>
+             <td>Impresora HP DeskJet 2775</td>
+             <td>Impresion</td>
+             <td>RD$ 5900.00</td>
+             <td>RD$ 5900.00</td>
+             <td>10</td>
+           </tr>
+           
+           <tr>
+             <td>I002</td>
+             <td>Impresora Epson EcoTank L3250</td>
+             <td>Impresion</td>
+             <td>RD$ 9800.00</td>
+             <td>RD$ 9800.00</td>
+             <td>8</td>
+           </tr>
+           
+           <tr>
+             <td>I003</td>
+             <td>Cartucho De Tinta HP 664 Negro</td>
+             <td>Impresion</td>
+             <td>RD$ 850.00</td>
+             <td>RD$ 850.00</td>
+             <td>45</td>
+           </tr>
+           
+           <tr>
+             <td>I004</td>
+             <td>Cartucho De Tinta Epson 664 Color</td>
+             <td>Impresion</td>
+             <td>RD$ 920.00</td>
+             <td>RD$ 920.00</td>
+             <td>38</td>
+           </tr>
+           
+           <tr>
+             <td>I005</td>
+             <td>Toner HP 85A</td>
+             <td>Impresion</td>
+             <td>RD$ 3600.00</td>
+             <td>RD$ 3600.00</td>
+             <td>14</td>
+           </tr>
+           
+           <tr>
+             <td>L001</td>
+             <td>Laptop HP Pavilion 15&quot;</td>
+             <td>Laptops</td>
+             <td>RD$ 17000.00</td>
+             <td>RD$ 24500.00</td>
+             <td>15</td>
+           </tr>
+           
+           <tr>
+             <td>L002</td>
+             <td>Laptop Dell Inspiron 14&quot;</td>
+             <td>Laptops</td>
+             <td>RD$ 19800.00</td>
+             <td>RD$ 19800.00</td>
+             <td>12</td>
+           </tr>
+           
+           <tr>
+             <td>L003</td>
+             <td>Laptop Lenovo ThinkPad E14</td>
+             <td>Laptops</td>
+             <td>RD$ 26000.00</td>
+             <td>RD$ 26000.00</td>
+             <td>8</td>
+           </tr>
+           
+           <tr>
+             <td>L004</td>
+             <td>Laptop ASUS VivoBook 15&quot;</td>
+             <td>Laptops</td>
+             <td>RD$ 18500.00</td>
+             <td>RD$ 18500.00</td>
+             <td>10</td>
+           </tr>
+           
+           <tr>
+             <td>L005</td>
+             <td>MacBook Air M2</td>
+             <td>Laptops</td>
+             <td>RD$ 58000.00</td>
+             <td>RD$ 58000.00</td>
+             <td>5</td>
+           </tr>
+           
+           <tr>
+             <td>M001</td>
+             <td>Silla Ergonomica Oficina</td>
+             <td>Mobiliario</td>
+             <td>RD$ 8500.00</td>
+             <td>RD$ 8500.00</td>
+             <td>9</td>
+           </tr>
+           
+           <tr>
+             <td>M002</td>
+             <td>Escritorio Para Computadora</td>
+             <td>Mobiliario</td>
+             <td>RD$ 7200.00</td>
+             <td>RD$ 7200.00</td>
+             <td>11</td>
+           </tr>
+           
+           <tr>
+             <td>M003</td>
+             <td>Base Para Laptop Ajustable</td>
+             <td>Mobiliario</td>
+             <td>RD$ 950.00</td>
+             <td>RD$ 950.00</td>
+             <td>20</td>
+           </tr>
+           
+           <tr>
+             <td>P001</td>
+             <td>Teclado Mecanico Logitech</td>
+             <td>Perifericos</td>
+             <td>RD$ 3200.00</td>
+             <td>RD$ 3200.00</td>
+             <td>25</td>
+           </tr>
+           
+           <tr>
+             <td>P002</td>
+             <td>Mouse Inalambrico Logitech M170</td>
+             <td>Perifericos</td>
+             <td>RD$ 650.00</td>
+             <td>RD$ 650.00</td>
+             <td>40</td>
+           </tr>
+           
+           <tr>
+             <td>P003</td>
+             <td>Combo Teclado y Mouse HP</td>
+             <td>Perifericos</td>
+             <td>RD$ 1200.00</td>
+             <td>RD$ 1200.00</td>
+             <td>30</td>
+           </tr>
+           
+           <tr>
+             <td>P004</td>
+             <td>Mouse Gamer Redragon</td>
+             <td>Perifericos</td>
+             <td>RD$ 1450.00</td>
+             <td>RD$ 1450.00</td>
+             <td>22</td>
+           </tr>
+           
+           <tr>
+             <td>P005</td>
+             <td>Teclado Numerico USB</td>
+             <td>Perifericos</td>
+             <td>RD$ 550.00</td>
+             <td>RD$ 550.00</td>
+             <td>35</td>
+           </tr>
+           
+           <tr>
+             <td>V001</td>
+             <td>Webcam Logitech C270</td>
+             <td>Audio y Video</td>
+             <td>RD$ 1800.00</td>
+             <td>RD$ 1800.00</td>
+             <td>18</td>
+           </tr>
+           
+           <tr>
+             <td>V002</td>
+             <td>Audifonos Con Microfono HyperX</td>
+             <td>Audio y Video</td>
+             <td>RD$ 3400.00</td>
+             <td>RD$ 3400.00</td>
+             <td>16</td>
+           </tr>
+           
+           <tr>
+             <td>V003</td>
+             <td>Bocinas USB Logitech</td>
+             <td>Audio y Video</td>
+             <td>RD$ 1100.00</td>
+             <td>RD$ 1100.00</td>
+             <td>24</td>
+           </tr>
+           
+           <tr>
+             <td>V004</td>
+             <td>Diadema Bluetooth JBL</td>
+             <td>Audio y Video</td>
+             <td>RD$ 4200.00</td>
+             <td>RD$ 4200.00</td>
+             <td>12</td>
+           </tr>
+           
+  
         <tr>
   <td>L001</td>
   <td>Laptop HP Pavilion 15"</td>
@@ -103,222 +425,7 @@
   <td>RD$ 58,000.00</td>
   <td>5</td>
 </tr>
-<tr>
-  <td>D001</td>
-  <td>PC Escritorio HP ProDesk</td>
-  <td>Escritorio</td>
-  <td>RD$ 21,000.00</td>
-  <td>RD$ 21,000.00</td>
-  <td>7</td>
-</tr>
-<tr>
-  <td>D002</td>
-  <td>Monitor LG 24" Full HD</td>
-  <td>Escritorio</td>
-  <td>RD$ 6,500.00</td>
-  <td>RD$ 6,500.00</td>
-  <td>20</td>
-</tr>
-<tr>
-  <td>D003</td>
-  <td>Monitor Samsung 27" Curvo</td>
-  <td>Escritorio</td>
-  <td>RD$ 11,200.00</td>
-  <td>RD$ 11,200.00</td>
-  <td>10</td>
-</tr>
-<tr>
-  <td>D004</td>
-  <td>Monitor Dell 22"</td>
-  <td>Escritorio</td>
-  <td>RD$ 5,800.00</td>
-  <td>RD$ 5,800.00</td>
-  <td>18</td>
-</tr>
-<tr>
-  <td>D005</td>
-  <td>All-in-One HP 24"</td>
-  <td>Escritorio</td>
-  <td>RD$ 28,000.00</td>
-  <td>RD$ 28,000.00</td>
-  <td>6</td>
-</tr>
-<tr>
-  <td>P001</td>
-  <td>Teclado Mecanico Logitech</td>
-  <td>Perifericos</td>
-  <td>RD$ 3,200.00</td>
-  <td>RD$ 3,200.00</td>
-  <td>25</td>
-</tr>
-<tr>
-  <td>P002</td>
-  <td>Mouse Inalambrico Logitech M170</td>
-  <td>Perifericos</td>
-  <td>RD$ 650.00</td>
-  <td>RD$ 650.00</td>
-  <td>40</td>
-</tr>
-<tr>
-  <td>P003</td>
-  <td>Combo Teclado y Mouse HP</td>
-  <td>Perifericos</td>
-  <td>RD$ 1,200.00</td>
-  <td>RD$ 1,200.00</td>
-  <td>30</td>
-</tr>
-<tr>
-  <td>P004</td>
-  <td>Mouse Gamer Redragon</td>
-  <td>Perifericos</td>
-  <td>RD$ 1,450.00</td>
-  <td>RD$ 1,450.00</td>
-  <td>22</td>
-</tr>
-<tr>
-  <td>P005</td>
-  <td>Teclado Numerico USB</td>
-  <td>Perifericos</td>
-  <td>RD$ 550.00</td>
-  <td>RD$ 550.00</td>
-  <td>35</td>
-</tr>
-<tr>
-  <td>I001</td>
-  <td>Impresora HP DeskJet 2775</td>
-  <td>Impresion</td>
-  <td>RD$ 5,900.00</td>
-  <td>RD$ 5,900.00</td>
-  <td>10</td>
-</tr>
-<tr>
-  <td>I002</td>
-  <td>Impresora Epson EcoTank L3250</td>
-  <td>Impresion</td>
-  <td>RD$ 9,800.00</td>
-  <td>RD$ 9,800.00</td>
-  <td>8</td>
-</tr>
-<tr>
-  <td>I003</td>
-  <td>Cartucho De Tinta HP 664 Negro</td>
-  <td>Impresion</td>
-  <td>RD$ 850.00</td>
-  <td>RD$ 850.00</td>
-  <td>45</td>
-</tr>
-<tr>
-  <td>I004</td>
-  <td>Cartucho De Tinta Epson 664 Color</td>
-  <td>Impresion</td>
-  <td>RD$ 920.00</td>
-  <td>RD$ 920.00</td>
-  <td>38</td>
-</tr>
-<tr>
-  <td>I005</td>
-  <td>Toner HP 85A</td>
-  <td>Impresion</td>
-  <td>RD$ 3,600.00</td>
-  <td>RD$ 3,600.00</td>
-  <td>14</td>
-</tr>
-<tr>
-  <td>A001</td>
-  <td>Disco Duro Externo Seagate 1TB</td>
-  <td>Almacenamiento</td>
-  <td>RD$ 3,100.00</td>
-  <td>RD$ 3,100.00</td>
-  <td>20</td>
-</tr>
-<tr>
-  <td>A002</td>
-  <td>SSD Kingston 480GB</td>
-  <td>Almacenamiento</td>
-  <td>RD$ 2,400.00</td>
-  <td>RD$ 2,400.00</td>
-  <td>25</td>
-</tr>
-<tr>
-  <td>A003</td>
-  <td>Memoria USB SanDisk 32GB</td>
-  <td>Almacenamiento</td>
-  <td>RD$ 450.00</td>
-  <td>RD$ 450.00</td>
-  <td>60</td>
-</tr>
-<tr>
-  <td>A004</td>
-  <td>Memoria RAM Kingston 8GB DDR4</td>
-  <td>Almacenamiento</td>
-  <td>RD$ 2,100.00</td>
-  <td>RD$ 2,100.00</td>
-  <td>30</td>
-</tr>
-<tr>
-  <td>A005</td>
-  <td>Cargador Universal Laptop</td>
-  <td>Almacenamiento</td>
-  <td>RD$ 1,300.00</td>
-  <td>RD$ 1,300.00</td>
-  <td>28</td>
-</tr>
-<tr>
-  <td>V001</td>
-  <td>Webcam Logitech C270</td>
-  <td>Audio Y Video</td>
-  <td>RD$ 1,800.00</td>
-  <td>RD$ 1,800.00</td>
-  <td>18</td>
-</tr>
-<tr>
-  <td>V002</td>
-  <td>Audifonos Con Microfono HyperX</td>
-  <td>Audio Y Video</td>
-  <td>RD$ 3,400.00</td>
-  <td>RD$ 3,400.00</td>
-  <td>16</td>
-</tr>
-<tr>
-  <td>V003</td>
-  <td>Bocinas USB Logitech</td>
-  <td>Audio Y Video</td>
-  <td>RD$ 1,100.00</td>
-  <td>RD$ 1,100.00</td>
-  <td>24</td>
-</tr>
-<tr>
-  <td>V004</td>
-  <td>Diadema Bluetooth JBL</td>
-  <td>Audio Y Video</td>
-  <td>RD$ 4,200.00</td>
-  <td>RD$ 4,200.00</td>
-  <td>12</td>
-</tr>
-<tr>
-  <td>M001</td>
-  <td>Silla Ergonomica Oficina</td>
-  <td>Mobiliario</td>
-  <td>RD$ 8,500.00</td>
-  <td>RD$ 8,500.00</td>
-  <td>9</td>
-</tr>
-<tr>
-  <td>M002</td>
-  <td>Escritorio Para Computadora</td>
-  <td>Mobiliario</td>
-  <td>RD$ 7,200.00</td>
-  <td>RD$ 7,200.00</td>
-  <td>11</td>
-</tr>
-<tr>
-  <td>M003</td>
-  <td>Base Para Laptop Ajustable</td>
-  <td>Mobiliario</td>
-  <td>RD$ 950.00</td>
-  <td>RD$ 950.00</td>
-  <td>20</td>
-</tr>
+
         
       </tbody>
     </table>

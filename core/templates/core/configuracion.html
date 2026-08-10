@@ -5,9 +5,15 @@
 <meta charset="UTF-8">
 <title>Cromf Finanzas - Configuracion</title>
 <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+<script src="{% static 'js/configuracion.js' %}"></script>
 </head>
 <body>
 
+<!-- ============================================================
+     MENU LATERAL (SIDEBAR)
+     Este bloque es IGUAL en las 10 páginas del sistema.
+     Los estilos de esto están en styles.css, SECCION 1.
+     ============================================================ -->
 <aside>
   <div class="logo">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -31,11 +37,24 @@
 </aside>
 
 <main>
-  <header class="topbar">
+  <!-- ============================================================
+       BARRA SUPERIOR (TOPBAR)
+       Título de la página + zona de usuario/notificaciones.
+       Estilos en styles.css, SECCION 2.
+       ============================================================ -->
+    <header class="topbar">
     <h1>⚙️ Configuracion</h1>
     <div class="admin-area">🔔 👤 Admin</div>
   </header>
 
+    <!-- ============================================================
+       PESTAÑAS (visual únicamente)
+       OJO: estos botones todavía NO tienen JavaScript conectado
+       en esta página (a diferencia de inventario.html, que sí
+       cambia de contenido al hacer clic). Por ahora solo se ve
+       cuál está "activa" con la clase .active.
+       Estilos en styles.css, SECCION 3.
+       ============================================================ -->
   <div class="tabs">
     <button class="active">Perfil</button>
     <button>Empresa</button>
@@ -244,6 +263,11 @@
         <h3>Zona De Peligro</h3>
         <p>Estas acciones son permanentes y no se pueden deshacer.</p>
         <button class="btn-danger">Eliminar Cuenta</button>
+      </div>
+      <div class="danger-zone">
+        <h3>Reiniciar Ventas Del Mes</h3>
+        
+        <button class="btn-danger btn-reiniciar">Reiniciar</button>
       </div>
 
     </div>
