@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.db import models
-from .models import Producto, MovimientoStock, MovimientoFinanciero, ProductoVentaHistorial
-from .forms import MovimientoStockForm
+from .models import Producto, MovimientoStock, MovimientoFinanciero
+from .forms import MovimientoStockForm, MovimientoFinancieroForm, ProductoForm
 
 
 from django.utils.timezone import now
@@ -32,6 +32,56 @@ def dashboard(request):
         'ganancia_neta': ganancia_neta,
         'total_ventas_mes': total_ventas_mes,
     })
+
+
+def productos(request):
+    if request.method == 'POST':
+        form = ProductoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('productos')
+    else:
+        form = ProductoForm()
+
+    lista_productos = Producto.objects.all()
+    movimientos = MovimientoStock.objects.all()[:20]
+
+    return render(request, 'core/productos.html', {
+        'productos': lista_productos,
+        'form': form,
+        'movimientos': movimientos,
+    })
+
+
+def ventas(request):
+    return render(request, 'core/ventas.html')
+
+
+def finanzas(request):
+    if request.method == 'POST':
+        form = MovimientoFinancieroForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('finanzas')
+    else:
+        form = MovimientoFinancieroForm()
+
+    ingresos = MovimientoFinanciero.objects.filter(tipo='Ingreso')
+    gastos = MovimientoFinanciero.objects.filter(tipo='Gasto')
+    historial = MovimientoFinanciero.objects.all()
+
+    total_ingresos = sum(m.monto for m in ingresos)
+    total_gastos = sum(m.monto for m in gastos)
+
+    return render(request, 'core/finanzas.html', {
+        'form': form,
+        'ingresos': ingresos,
+        'gastos': gastos,
+        'historial': historial,
+        'total_ingresos': total_ingresos,
+        'total_gastos': total_gastos,
+    })
+
 
 def inventario(request):
     if request.method == 'POST':

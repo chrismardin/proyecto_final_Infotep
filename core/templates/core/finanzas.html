@@ -36,99 +36,187 @@
 </aside>
 
 <main>
-  <!-- ============================================================
-       BARRA SUPERIOR (TOPBAR)
-       Título de la página + zona de usuario/notificaciones.
-       Estilos en styles.css, SECCION 2.
-       ============================================================ -->
-    <header class="topbar">
-    <h1>💰 Ingresos</h1>
+  <header class="topbar">
+    <h1 id="titulo-pagina">💰 Ingresos</h1>
     <div class="admin-area">
       <span class="avatar">👤</span> Admin
     </div>
   </header>
 
-    <!-- ============================================================
-       PESTAÑAS (visual únicamente)
-       OJO: estos botones todavía NO tienen JavaScript conectado
-       en esta página (a diferencia de inventario.html, que sí
-       cambia de contenido al hacer clic). Por ahora solo se ve
-       cuál está "activa" con la clase .active.
-       Estilos en styles.css, SECCION 3.
-       ============================================================ -->
-  <div class="tabs">
-    <button class="active">Ingresos</button>
-    <button>Gastos</button>
-    <button>Historial</button>
+  <div class="tabs-pill">
+    <button class="tab-btn active" data-tab="ingresos" onclick="mostrarTab('ingresos', this)">Ingresos</button>
+    <button class="tab-btn" data-tab="gastos" onclick="mostrarTab('gastos', this)">Gastos</button>
+    <button class="tab-btn" data-tab="historial" onclick="mostrarTab('historial', this)">Historial</button>
   </div>
 
-    <!-- ============================================================
-       PANEL PRINCIPAL (tabla / contenido de esta página)
-       Estilos en styles.css, SECCION 6 (panel) y SECCION 7 (tabla).
-       ============================================================ -->
-  <div class="panel">
-    <div class="panel-toolbar">
-      <div class="search-box">
-        🔍 <input type="text" placeholder="Buscar...">
+  <div id="form-registro" class="panel" style="display:none;">
+    <h3 style="margin-bottom:16px;">Nuevo Registro</h3>
+    <form method="post">
+      {% csrf_token %}
+      <div class="filters-row">
+        <div class="field-group">
+          <label>Tipo</label>
+          {{ form.tipo }}
+        </div>
+        <div class="field-group">
+          <label>Fecha</label>
+          {{ form.fecha }}
+        </div>
+        <div class="field-group">
+          <label>Categoria</label>
+          {{ form.categoria }}
+        </div>
+        <div class="field-group">
+          <label>Cliente / Proveedor</label>
+          {{ form.cliente_proveedor }}
+        </div>
       </div>
-      <button class="btn-add">+ Nuevo Registro</button>
+      <div class="filters-row">
+        <div class="field-group">
+          <label>Monto (RD$)</label>
+          {{ form.monto }}
+        </div>
+        <div class="field-group">
+          <label>Medio de Pago</label>
+          {{ form.medio_pago }}
+        </div>
+        <div class="field-group">
+          <label>Factura</label>
+          {{ form.factura }}
+        </div>
+        <button type="submit" class="btn-add green" style="align-self:flex-end;">Guardar</button>
+      </div>
+    </form>
+  </div>
+
+  <div id="tab-ingresos" class="tab-content">
+    <div class="panel">
+      <div class="panel-toolbar">
+        <div class="search-box">
+          🔍 <input type="text" placeholder="Buscar...">
+        </div>
+        <button class="btn-add green" onclick="toggleFormulario()">+ Nuevo Registro</button>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Fecha</th>
+            <th>Categoria</th>
+            <th>Cliente</th>
+            <th>Monto (RD$)</th>
+            <th>Medio de pago</th>
+            <th>Factura</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for mov in ingresos %}
+          <tr>
+            <td>{{ mov.fecha|date:"d-m-Y" }}</td>
+            <td>{{ mov.categoria }}</td>
+            <td>{{ mov.cliente_proveedor }}</td>
+            <td>RD$ {{ mov.monto }}</td>
+            <td>{{ mov.medio_pago }}</td>
+            <td>{{ mov.factura|default:"--" }}</td>
+          </tr>
+          {% empty %}
+          <tr><td colspan="6">Todavia no hay ingresos registrados.</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <div class="table-total">
+        <span>Total</span>
+        <span>RD$ {{ total_ingresos }}</span>
+      </div>
     </div>
+  </div>
 
-    <table>
-      <thead>
-        <tr>
-          <th>ID Cliente</th>
-          <th>Fecha</th>
-          <th>Categoria</th>
-          <th>Cliente</th>
-          <th>Monto (RD$)</th>
-          <th>Medio de pago</th>
-          <th>Factura</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>1001</td>
-          <td>27-09-2026</td>
-          <td>Venta Laptop</td>
-          <td>Rosa Peña</td>
-          <td>RD$ 43,250.00</td>
-          <td>Banco BHD</td>
-          <td>F000001</td>
-        </tr>
-        <tr>
-          <td>1002</td>
-          <td>28-09-2026</td>
-          <td>Servicio Consultoria</td>
-          <td>Francisco Ventura</td>
-          <td>RD$ 26,000.00</td>
-          <td>Caja Chica</td>
-          <td>F000019</td>
-        </tr>
-        <tr>
-          <td>1010</td>
-          <td>28-09-2026</td>
-          <td>Venta Impresora</td>
-          <td>Crismardin Castaño</td>
-          <td>RD$ 23,000.00</td>
-          <td>Caja Chica</td>
-          <td>F000025</td>
-        </tr>
-        <tr>
-          <td>1020</td>
-          <td>29-09-2028</td>
-          <td>Asesoria</td>
-          <td>Monica Vega</td>
-          <td>RD$ 15,000.00</td>
-          <td>Banco BHD</td>
-          <td>Rec.033</td>
-        </tr>
-      </tbody>
-    </table>
+  <div id="tab-gastos" class="tab-content" style="display:none;">
+    <div class="panel">
+      <div class="panel-toolbar">
+        <div class="search-box">
+          🔍 <input type="text" placeholder="Buscar...">
+        </div>
+        <button class="btn-add green" onclick="toggleFormulario()">+ Nuevo Registro</button>
+      </div>
 
-    <div class="table-total">
-      <span>Total</span>
-      <span>RD$ 26,000.00</span>
+      <table>
+        <thead>
+          <tr>
+            <th>Fecha</th>
+            <th>Categoria</th>
+            <th>Proveedor</th>
+            <th>Monto (RD$)</th>
+            <th>Medio de pago</th>
+            <th>Factura</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for mov in gastos %}
+          <tr>
+            <td>{{ mov.fecha|date:"d-m-Y" }}</td>
+            <td>{{ mov.categoria }}</td>
+            <td>{{ mov.cliente_proveedor }}</td>
+            <td>RD$ {{ mov.monto }}</td>
+            <td>{{ mov.medio_pago }}</td>
+            <td>{{ mov.factura|default:"--" }}</td>
+          </tr>
+          {% empty %}
+          <tr><td colspan="6">Todavia no hay gastos registrados.</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <div class="table-total">
+        <span>Total</span>
+        <span>RD$ {{ total_gastos }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div id="tab-historial" class="tab-content" style="display:none;">
+    <div class="panel">
+      <div class="panel-toolbar">
+        <div class="search-box">
+          🔍 <input type="text" placeholder="Buscar en historial...">
+        </div>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Fecha</th>
+            <th>Tipo</th>
+            <th>Categoria</th>
+            <th>Cliente / Proveedor</th>
+            <th>Monto (RD$)</th>
+            <th>Medio de pago</th>
+            <th>Factura</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for mov in historial %}
+          <tr>
+            <td>{{ mov.fecha|date:"d-m-Y" }}</td>
+            <td>
+              {% if mov.tipo == "Ingreso" %}
+                <span class="estado ok">Ingreso</span>
+              {% else %}
+                <span class="estado bajo">Gasto</span>
+              {% endif %}
+            </td>
+            <td>{{ mov.categoria }}</td>
+            <td>{{ mov.cliente_proveedor }}</td>
+            <td>RD$ {{ mov.monto }}</td>
+            <td>{{ mov.medio_pago }}</td>
+            <td>{{ mov.factura|default:"--" }}</td>
+          </tr>
+          {% empty %}
+          <tr><td colspan="7">Todavia no hay movimientos registrados.</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
     </div>
   </div>
 
@@ -142,6 +230,24 @@
     <p>💡 IA Recomienda: Considere optimizar el stock para el pico de ventas.</p>
   </div>
 </main>
+
+<script>
+  function mostrarTab(tabId, btn) {
+    document.querySelectorAll('.tab-content').forEach(el => el.style.display = 'none');
+    document.getElementById('tab-' + tabId).style.display = 'block';
+
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    const titulos = { ingresos: '💰 Ingresos', gastos: '💸 Gastos', historial: '📜 Historial' };
+    document.getElementById('titulo-pagina').textContent = titulos[tabId];
+  }
+
+  function toggleFormulario() {
+    const form = document.getElementById('form-registro');
+    form.style.display = (form.style.display === 'none') ? 'block' : 'none';
+  }
+</script>
 
 </body>
 </html>

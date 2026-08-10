@@ -83,21 +83,54 @@ class MovimientoFinanciero(models.Model):
         ordering = ['-fecha']
 
 
-class ProductoVentaHistorial(models.Model):
-    """
-    Guarda los productos que se han usado alguna vez en el formulario
-    de Ventas, para poder reutilizarlos rapido (pestaña "Historial"
-    de la pagina de Ventas). Antes esto vivia en localStorage; ahora
-    se guarda en la base de datos para que no se pierda al recargar
-    la pagina ni al cambiar de computadora.
-    """
-    sku = models.CharField(max_length=20, unique=True, verbose_name="SKU/Cod")
+class Cliente(models.Model):
+    TIPO_CHOICES = [
+        ('Publico', 'Publico'),
+        ('Empresa', 'Empresa'),
+        ('Frecuente', 'Frecuente'),
+    ]
+
     nombre = models.CharField(max_length=120)
-    precio = models.DecimalField(max_digits=10, decimal_places=2)
-    actualizado = models.DateTimeField(auto_now=True)
+    empresa = models.CharField(max_length=120, blank=True)
+    telefono = models.CharField(max_length=20, blank=True)
+    tipo = models.CharField(max_length=15, choices=TIPO_CHOICES, default='Publico')
 
     def __str__(self):
-        return f"{self.sku} - {self.nombre}"
+        return self.nombre
 
     class Meta:
         ordering = ['nombre']
+
+
+class Venta(models.Model):
+    METODO_PAGO_CHOICES = [
+        ('Efectivo', 'Efectivo'),
+        ('Tarjeta', 'Tarjeta'),
+    ]
+
+    cliente = models.ForeignKey(Cliente, on_delete=models.SET_NULL, null=True, blank=True)
+    fecha = models.DateTimeField(auto_now_add=True)
+    subtotal = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    itbs = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    total = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    metodo_pago = models.CharField(max_length=10, choices=METODO_PAGO_CHOICES, default='Efectivo')
+
+    def __str__(self):
+        return f"Venta #{self.id} - {self.fecha.strftime('%d-%m-%Y')}"
+
+    class Meta:
+        ordering = ['-fecha']
+
+
+class DetalleVenta(models.Model):
+    venta = models.ForeignKey(Venta, on_delete=models.CASCADE, related_name='detalles')
+    producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
+    cantidad = models.PositiveIntegerField()
+    precio_unitario = models.DecimalField(max_digits=10, decimal_places=2)
+
+    @property
+    def subtotal(self):
+        return self.cantidad * self.precio_unitario
+
+    def __str__(self):
+        return f"{self.producto.nombre} x{self.cantidad}"

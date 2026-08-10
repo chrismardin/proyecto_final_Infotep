@@ -79,6 +79,39 @@
         <div class="value">RD$ {{ total_ventas_mes|floatformat:2 }}</div>
         <div class="sub up">▲ 11.5% Vs Mes Anterior</div>
 
+  <section class="kpi-row">
+    <div class="kpi-card">
+      <div class="label">Ingresos (RD$)</div>
+      <div class="value">RD$ {{ total_ingresos }}</div>
+      <div class="sub up">▲ Total de ingresos registrados</div>
+    </div>
+    <div class="kpi-card">
+      <div class="label">Gastos (RD$)</div>
+      <div class="value">RD$ {{ total_gastos }}</div>
+      <div class="sub down">▼ Total de gastos registrados</div>
+    </div>
+    <div class="kpi-card">
+      <div class="label">Ganancias Netas (RD$)</div>
+      <div class="value">RD$ {{ ganancia_neta }}</div>
+      <div class="sub neutral">Ingresos menos gastos</div>
+    </div>
+  </section>
+<div class="card">
+    <h3>Ventas Mensuales Por Categoria</h3>
+    <div class="legend">
+      <span><i class="dot" style="background:#d21f1f;"></i>Cat 1</span>
+      <span><i class="dot" style="background:#6e1414;"></i>Cat 2</span>
+      <span><i class="dot" style="background:#1f9e82;"></i>Cat 3</span>
+      <span><i class="dot" style="background:#7a2fa5;"></i>Cat 4</span>
+    </div>
+    <div class="dash-chart-wrap">
+      <div class="dash-chart-yaxis">
+        <span>RD$ 2500.00</span>
+        <span>RD$ 2000.00</span>
+        <span>RD$ 1500.00</span>
+        <span>RD$ 1000.00</span>
+        <span>RD$ 500.00</span>
+        <span>0.0</span>
       </div>
 
       <div class="kpi-card">
@@ -143,57 +176,42 @@
         </div>
       </div>
     </div>
-    <div class="card">
-      <h3><u>Ultimos Movimientos Financieros</u></h3>
-      <table>
-        <thead>
-          <tr>
-            <th>Fecha</th>
-            <th>Tipo Transaccion</th>
-            <th>Descripcion</th>
-            <th>Ventas Cuaderno</th>
-            <th class="amount">&nbsp;</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>17-06-2026</td>
-            <td>Pago Luz</td>
-            <td>Pago Luz</td>
-            <td></td>
-            <td class="amount">RD$ 35,220.00</td>
-          </tr>
-          <tr>
-            <td><strong>02-03-2026</strong></td>
-            <td>Inventario</td>
-            <td>Compra Stock</td>
-            <td><strong>Compra Stock</strong></td>
-            <td class="amount"><strong>RD$ 1,880.00</strong></td>
-          </tr>
-          <tr>
-            <td>25-01-2026</td>
-            <td>Inventario</td>
-            <td>Compra Stock</td>
-            <td></td>
-            <td class="amount">RD$ 880.00</td>
-          </tr>
-          <tr>
-            <td>22-07-2026</td>
-            <td>Inventario</td>
-            <td>Compra Stock</td>
-            <td></td>
-            <td class="amount">RD$ 250.00</td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td class="amount">RD$29,350.00</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+  </div>
+  <div class="card">
+    <h3><u>Ultimos Movimientos Financieros</u></h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Fecha</th>
+          <th>Tipo</th>
+          <th>Categoria</th>
+          <th>Cliente / Proveedor</th>
+          <th class="amount">Monto</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for mov in movimientos %}
+        <tr>
+          <td>{{ mov.fecha|date:"d-m-Y" }}</td>
+          <td>
+            {% if mov.tipo == "Ingreso" %}
+              <span class="estado ok">Ingreso</span>
+            {% else %}
+              <span class="estado bajo">Gasto</span>
+            {% endif %}
+          </td>
+          <td>{{ mov.categoria }}</td>
+          <td>{{ mov.cliente_proveedor }}</td>
+          <td class="amount">RD$ {{ mov.monto }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="5">Todavia no hay movimientos registrados.</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
 
     <!-- ============================================================
        ALERTAS DEL MODULO IA
