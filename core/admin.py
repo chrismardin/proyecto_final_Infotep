@@ -1,9 +1,5 @@
 from django.contrib import admin
-<<<<<<< Updated upstream
-from .models import Producto, MovimientoStock, MovimientoFinanciero, ProductoVentaHistorial
-=======
 from .models import Producto, MovimientoStock, MovimientoFinanciero, Cliente, Venta, DetalleVenta
->>>>>>> Stashed changes
 
 
 @admin.register(Producto)
@@ -26,13 +22,6 @@ class MovimientoFinancieroAdmin(admin.ModelAdmin):
     search_fields = ('categoria', 'cliente_proveedor', 'factura')
 
 
-<<<<<<< Updated upstream
-@admin.register(ProductoVentaHistorial)
-class ProductoVentaHistorialAdmin(admin.ModelAdmin):
-    list_display = ('sku', 'nombre', 'precio', 'actualizado')
-    search_fields = ('sku', 'nombre')
-=======
- 
 @admin.register(Cliente)
 class ClienteAdmin(admin.ModelAdmin):
     list_display = ('nombre', 'empresa', 'telefono', 'tipo')
@@ -47,5 +36,4 @@ class DetalleVentaInline(admin.TabularInline):
 @admin.register(Venta)
 class VentaAdmin(admin.ModelAdmin):
     list_display = ('id', 'fecha', 'cliente', 'total', 'metodo_pago')
-    inlines = [DetalleVentaInline]   
->>>>>>> Stashed changes
+    inlines = [DetalleVentaInline]

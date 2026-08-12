@@ -134,3 +134,11 @@ class DetalleVenta(models.Model):
 
     def __str__(self):
         return f"{self.producto.nombre} x{self.cantidad}"
+class ProductoVentaHistorial(models.Model):
+    sku = models.CharField(max_length=20, unique=True, verbose_name='SKU/Cod')
+    nombre = models.CharField(max_length=120)
+    precio = models.DecimalField(max_digits=10, decimal_places=2)
+    actualizado = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ['nombre']
